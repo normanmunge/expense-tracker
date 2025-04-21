@@ -22,7 +22,7 @@ const ExpensesOutput: FunctionComponent<OutputProps> = ({expenses, period }) => 
             <View style={styles.activitiesContainer}>
                 <Header>
                     <Title>Recent Activity</Title>
-                    <Nav>View All</Nav>
+                    <Nav href='All Expenses'>View All</Nav>
                 </Header>
                 <ExpensesList expenses={DUMMYEXPENSES} />
             </View>
