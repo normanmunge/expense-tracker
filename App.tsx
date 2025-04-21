@@ -23,37 +23,37 @@ const ExpensesOverview = () => {
           headerStyle: {
             backgroundColor: COLORS.background
           },
-          headerTintColor: COLORS.text,
+          headerTintColor: COLORS.barText,
           headerTitleStyle: {
             fontWeight: 'bold'
           },
           tabBarStyle: {
             backgroundColor: COLORS.containerBackground,
-            borderTopColor: COLORS.text,
+            borderTopColor: COLORS.barText,
             borderTopWidth: 1
           },
-          tabBarActiveTintColor: COLORS.text,
+          tabBarActiveTintColor: COLORS.barText,
           tabBarInactiveTintColor: COLORS.inactive
         }}>
+           <BottomTabs.Screen 
+              name="All Expenses" 
+              component={AllExpenses} 
+              options={{
+                tabBarIcon: ({color, size}) => (
+                  <Ionicons name="home-outline" size={size} color={color} />
+                )
+              }}
+            />
             <BottomTabs.Screen
               name="Recent Expenses" 
               component={RecentExpense} 
               options={{
                   tabBarIcon: ({color, size}) => (
-                    <Ionicons name="hourglass-outline" size={size} color={color} />
+                    <Ionicons name="calendar-outline" size={size} color={color} />
                   ),
                   
                 }} 
               /> 
-            <BottomTabs.Screen 
-              name="All Expenses" 
-              component={AllExpenses} 
-              options={{
-                tabBarIcon: ({color, size}) => (
-                  <Ionicons name="calendar-outline" size={size} color={color} />
-                )
-              }}
-            />
             <BottomTabs.Screen 
               name="Settings" 
               component={Settings} 
