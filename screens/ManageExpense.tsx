@@ -4,6 +4,7 @@ import { useLayoutEffect } from "react"
 import { View, StyleSheet } from "react-native"
 import IconButton from "@/ui/IconButton"
 import { COLORS } from "@/constants/colors"
+import Button from "@/ui/Button"
 
 type ManageExpenseProps = {
     route?: {
@@ -27,10 +28,25 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
 
     const deleteExpense = () => {
         console.log('delete expense')
+        navigation?.goBack()
+    }
+
+    const cancelHandler = () => {
+        navigation?.goBack()
+    }
+
+    const confirmHandler = () => {
+        navigation?.goBack()
     }
 
     return (
         <View style={styles.container}>
+            <View style={styles.buttonContainer}>
+                <Button customStyle={styles.button} variant='flat' onPress={cancelHandler}>Cancel</Button>
+                <Button customStyle={styles.button} onPress={confirmHandler}>
+                    {isEditing ? 'Update': 'Add'}
+                </Button>
+            </View>
             {isEditing && (
                 <View style={styles.deleteContainer}>
                     <IconButton 
@@ -50,7 +66,17 @@ export default ManageExpense;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 24
+        padding: 24,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginHorizontal: 10
+    },
+    button: {
+        minWidth: 120,
+        marginHorizontal: 8
     },
     deleteContainer: {
         marginTop: 16,
