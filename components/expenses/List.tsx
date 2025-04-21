@@ -1,20 +1,48 @@
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { View, FlatList, Text, StyleSheet, Pressable } from "react-native";
+import type { FunctionComponent } from 'react';
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { Expense } from '@/types';
 import Card from '@/ui/Card'
-import type { FunctionComponent } from 'react';
+
+import { DateTime } from 'luxon'
+
+type RootStackParamList = {
+    'Manage Expense': {
+        expenseId: string
+    }
+}
 
 const ExpenseItem: FunctionComponent<Expense> = (itemData) => {
+
+    const { id, description, amount, mode, date } = itemData;
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
+    const expensePressHandler = () => {
+        navigation.navigate('Manage Expense', {
+            expenseId: id
+        })
+    }
+
     return (
-        <View style={styles.container}>
-            <View style={styles.descriptionContainer}>
-                <Text>{itemData.description} - {itemData.category} </Text>
-                <Text>{itemData.amount}</Text>
+        <Pressable 
+            onPress={expensePressHandler} 
+            style={({pressed}) => pressed && styles.pressed}
+        >
+            <View style={styles.container}>
+                <View style={styles.descriptionContainer}>
+                    <Text>{itemData.description} - {itemData.category} </Text>
+                    <Text>{itemData.amount.toFixed(2)}</Text>
+                </View>
+                <View style={styles.modeContainer}>
+                    <Text>{itemData.mode}</Text>
+                    <Text>{DateTime.fromJSDate(itemData.date).toLocaleString(DateTime.DATE_MED)}</Text>
+                </View>
             </View>
-            <View style={styles.modeContainer}>
-                <Text>{itemData.mode}</Text>
-                <Text>{itemData.date.toLocaleDateString()}</Text>
-            </View>
-        </View>
+        </Pressable>
+       
     )
 }
 
@@ -51,5 +79,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 5
+    },
+    pressed: {
+        opacity: 0.75
     }
 })
