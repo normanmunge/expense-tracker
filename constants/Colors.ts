@@ -1,7 +1,7 @@
 export const COLORS = {
     background: '#1a1a1a',
     barText: '#FFE81F',
-    yellow: '#FFE81F',
+    secondary: '#FFE81F',
     inactive: '#888888',
     itemBackground: '#333333',
     containerBackground: '#222222',
@@ -9,5 +9,6 @@ export const COLORS = {
     white: '#FFFFFF',
     text: '#3F3F3F',
     navText: '#575757',
-    error: '#FF0000'
+    error: '#FF0000',
+    primary: '#0056B3'
 }
