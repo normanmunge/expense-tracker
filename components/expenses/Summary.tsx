@@ -17,7 +17,6 @@ const ExpensesSummary: FunctionComponent<SummaryProps> = ({
         return sum + expense.amount
     }, 0)
 
-
     return (
         <View style={styles.container}>
             <Title>{period}</Title>
