@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
+import type { FunctionComponent } from 'react';
 
-const ManageExpense = () => {
+const ManageExpense: FunctionComponent = () => {
     return (
         <View>
             <Text>

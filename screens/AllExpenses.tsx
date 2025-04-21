@@ -1,8 +1,8 @@
 import ExpensesOutput from '@/components/expenses/Output';
 import { StyleSheet, View } from 'react-native';
 import { COLORS } from '@/constants/colors';
-
-const AllExpenses = () => {
+import type { FunctionComponent } from 'react';
+const AllExpenses: FunctionComponent = () => {
     return (
         <View style={styles.containerBackground}>
             <ExpensesOutput period='Total' />

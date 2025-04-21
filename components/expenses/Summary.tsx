@@ -1,15 +1,17 @@
-import { Expense } from '@/utils/types';
+import type { FunctionComponent } from 'react';
+import { Expense } from '@/types';
 import { View, Text, StyleSheet } from 'react-native'
+import Title from '@/ui/Title'
 
 type SummaryProps = {
     period: string;
     expenses: Expense[]
 }
 
-const ExpensesSummary = ({
+const ExpensesSummary: FunctionComponent<SummaryProps> = ({
     period,
     expenses
-}: SummaryProps) => {
+}) => {
 
     const sum = expenses.reduce((sum, expense) => {
         return sum + expense.amount
@@ -18,7 +20,7 @@ const ExpensesSummary = ({
 
     return (
         <View style={styles.container}>
-            <Text style={styles.period}>{period}</Text>
+            <Title>{period}</Title>
             <Text style={styles.sum}>KES {sum.toFixed(2)}</Text>
         </View>
     )
@@ -28,12 +30,13 @@ export default ExpensesSummary;
 
 const styles = StyleSheet.create({
     container: {
-        padding: 8,
+        padding: 30,
         backgroundColor: '#eaeaea',
         borderRadius: 6,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        height: 175
     },
     period: {
         fontSize: 12,

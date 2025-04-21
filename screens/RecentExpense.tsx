@@ -1,10 +1,12 @@
+import type { FunctionComponent } from 'react';
 import { Text, View } from 'react-native';
 import ExpensesOutput from '@/components/expenses/Output';
+import ExpensesOverview from '@/components/expenses/Overview';
 
-const RecentExpense = () => {
+const RecentExpense: FunctionComponent = () => {
     return (
         <View>
-            <ExpensesOutput period='Last 7 Days' />
+            <ExpensesOverview />
         </View>
     )
 }

@@ -1,17 +1,28 @@
-import { FlatList, Text } from "react-native";
-import { Expense } from '@/utils/types';
+import { View, FlatList, Text, StyleSheet } from "react-native";
+import { Expense } from '@/types';
 import Card from '@/ui/Card'
+import type { FunctionComponent } from 'react';
 
-
-const ExpenseItem = (itemData: Expense) => {
-    return <Text>{itemData.description}</Text>
+const ExpenseItem: FunctionComponent<Expense> = (itemData) => {
+    return (
+        <View style={styles.container}>
+            <View style={styles.descriptionContainer}>
+                <Text>{itemData.description} - {itemData.category} </Text>
+                <Text>{itemData.amount}</Text>
+            </View>
+            <View style={styles.modeContainer}>
+                <Text>{itemData.mode}</Text>
+                <Text>{itemData.date.toLocaleDateString()}</Text>
+            </View>
+        </View>
+    )
 }
 
 type ListProps = {
     expenses: Expense[]
 }
 
-const ExpensesList =  ({expenses }: ListProps) => {
+const ExpensesList: FunctionComponent<ListProps> = ({expenses }) => {
     return (
         <Card>
             <FlatList 
@@ -26,3 +37,19 @@ const ExpensesList =  ({expenses }: ListProps) => {
 }
 
 export default ExpensesList;
+
+
+const styles = StyleSheet.create({
+    container: {
+        marginBottom: 30,
+    },
+    descriptionContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    modeContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 5
+    }
+})
