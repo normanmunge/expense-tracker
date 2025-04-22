@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
 //import IconButton from "@expense-app/ui/lib/IconButton"
 import { COLORS } from "../constants/colors"
-import { Stack, H1 } from "tamagui"
+import { Stack, H1, Form, Label, Input, Button } from "tamagui"
 // import Button from "@expense-app/ui/lib/Button"
 
 type ManageExpenseProps = {
@@ -39,9 +39,30 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
         navigation?.goBack()
     }
 
+    const handleSubmit = (values: any) => {
+        console.log(values)
+    }
+
     return (
         <Stack>
-            <H1>Manage Expense</H1>
+            {/* <Formik onSubmit={handleSubmit}> */}
+                <Form mx={'$4'}>
+                    <Label px={'$4'} htmlFor='name'>Name</Label>
+                    <Input id="name" size={'$4'} />
+
+                    <Label px={'$4'} htmlFor='amount'>Amount</Label>
+                    <Input id="amount" size={'$4'} />
+
+                    <Label px={'$4'} htmlFor='date'>Date</Label>
+                    <Input id="date" size={'$4'} />
+
+                    <Label px={'$4'} htmlFor='description'>Description</Label>
+                    <Input id="description" size={'$4'} />
+
+                    <Button>Submit</Button>
+                </Form>
+                
+            {/* </Formik> */}
             {/* <View style={styles.buttonContainer}>
                 <Button customStyle={styles.button} variant='flat' onPress={cancelHandler}>Cancel</Button>
                 <Button customStyle={styles.button} onPress={confirmHandler}>
