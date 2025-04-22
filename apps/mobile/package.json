@@ -17,6 +17,7 @@
     "@react-navigation/native-stack": "^7.3.10",
     "@tamagui/babel-plugin": "^1.126.1",
     "@tamagui/core": "^1.126.1",
+    "@tamagui/lucide-icons": "^1.126.1",
     "@testing-library/jest-native": "*",
     "@testing-library/react-native": "*",
     "expo": "~52.0.46",
