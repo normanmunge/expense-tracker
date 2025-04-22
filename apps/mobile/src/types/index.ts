@@ -1,9 +1,9 @@
 
-export type Expense = {
-    id: string
-    description: string
-    amount: number
-    category: string
-    date: Date
-    mode: string
+export interface Transaction {
+    id: string;
+    name: string;
+    amount: number;
+    date: string;
+    type: string;
+    category: string;
 }
