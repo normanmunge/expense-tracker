@@ -13,7 +13,7 @@ type Props = {
     href?: string;
 }
 
-const Title: FunctionComponent<Props> = ({children, href}) => {
+export const Title: FunctionComponent<Props> = ({children, href}) => {
 
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -32,8 +32,6 @@ const Title: FunctionComponent<Props> = ({children, href}) => {
         </Pressable> 
     )
 }
-
-export default Title;
 
 const styles = StyleSheet.create({
     textContainer: {

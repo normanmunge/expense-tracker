@@ -19,7 +19,7 @@ type ButtonProps = {
 }
 
 
-const Button: FunctionComponent<ButtonProps> = ({ children, onPress, disabled = false, variant, customStyle }) => {
+export const Button: FunctionComponent<ButtonProps> = ({ children, onPress, disabled = false, variant, customStyle }) => {
     return (
         <View style={customStyle}>
             <Pressable onPress={onPress}>
@@ -32,9 +32,6 @@ const Button: FunctionComponent<ButtonProps> = ({ children, onPress, disabled = 
         </View>
     )
 }
-
-
-export default Button;
 
 const styles = StyleSheet.create({
     button: {

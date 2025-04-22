@@ -6,11 +6,9 @@ type Props = {
     children: React.ReactNode;
 }
 
-const Header: FunctionComponent<Props> = ({children}) => {
+export const Header: FunctionComponent<Props> = ({children}) => {
     return <View style={styles.container}>{children}</View> 
 }
-
-export default Header;
 
 const styles = StyleSheet.create({
     container: {

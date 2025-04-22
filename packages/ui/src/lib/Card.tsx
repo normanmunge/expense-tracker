@@ -5,16 +5,13 @@ type CardProps = {
     children: React.ReactNode;
 }
 
-const Card: FunctionComponent<CardProps> = ({children}) => {
+export const Card: FunctionComponent<CardProps> = ({children}) => {
     return (
         <View style={styles.cardContainer}>
             {children}
         </View>
     )
 }
-
-
-export default Card;
 
 const styles = StyleSheet.create({
     cardContainer: {

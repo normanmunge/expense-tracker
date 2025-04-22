@@ -6,11 +6,9 @@ type Props = {
     children: React.ReactNode;
 }
 
-const Title: FunctionComponent<Props> = ({children}) => {
+export const Title: FunctionComponent<Props> = ({children}) => {
     return <Text style={styles.textContainer}>{children}</Text> 
 }
-
-export default Title;
 
 const styles = StyleSheet.create({
     textContainer: {
