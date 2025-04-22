@@ -1,16 +1,17 @@
-import { StatusBar } from "react-native";
+import React from 'react';
+import { SafeAreaView, StatusBar } from "react-native";
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { COLORS } from '@/constants/colors';
+import { COLORS } from '../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 
-import ManageExpense from "@/screens/ManageExpense";
-import RecentExpense from "@/screens/RecentExpense";
-import AllExpenses from "@/screens/AllExpenses";
-import Settings from "./screens/Settings";
-import IconButton from "./ui/IconButton";
+import ManageExpense from "../screens/ManageExpense";
+import RecentExpense from "../screens/RecentExpense";
+import AllExpenses from "../screens/AllExpenses";
+import Settings from "../screens/Settings";
+import IconButton from "@expense-app/ui/lib/IconButton";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -80,9 +81,14 @@ const ExpensesOverview = () => {
 
 export default function App() {
   return (
-    <>
+    <React.Fragment>
       <StatusBar />
-      <NavigationContainer>
+      <SafeAreaView
+        style={{
+          flex: 1,
+        }}
+      >
+        <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerShadowVisible: false,
           headerStyle: {
@@ -109,6 +115,7 @@ export default function App() {
             />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+      </SafeAreaView>
+    </React.Fragment>
   )
 }

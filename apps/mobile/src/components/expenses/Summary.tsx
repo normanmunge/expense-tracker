@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react';
-import { Expense } from '@/types';
+import { Expense } from '../../types';
 import { View, Text, StyleSheet } from 'react-native'
-import Title from '@/ui/Title'
+import Title from '@expense-app/ui/lib/Title'
 
 type SummaryProps = {
     period: string;

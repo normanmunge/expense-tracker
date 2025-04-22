@@ -3,8 +3,8 @@ import type { FunctionComponent } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
-import { Expense } from '@/types';
-import Card from '@/ui/Card'
+import { Expense } from '../../types';
+import Card from '@expense-app/ui/lib/Card'
 
 import { DateTime } from 'luxon'
 

@@ -2,9 +2,9 @@ import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
 import { View, StyleSheet } from "react-native"
-import IconButton from "@/ui/IconButton"
-import { COLORS } from "@/constants/colors"
-import Button from "@/ui/Button"
+import IconButton from "@expense-app/ui/lib/IconButton"
+import { COLORS } from "../constants/colors"
+import Button from "@expense-app/ui/lib/Button"
 
 type ManageExpenseProps = {
     route?: {

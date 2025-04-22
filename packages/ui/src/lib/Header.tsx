@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { COLORS } from '@/constants/colors';
+import { COLORS } from '@/apps/mobile/src/constants/colors';
 import type { FunctionComponent } from 'react';
 
 type Props = {

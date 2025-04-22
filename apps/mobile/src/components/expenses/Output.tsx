@@ -1,13 +1,13 @@
 import type { FunctionComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Expense } from '@/types';
-import { DUMMYEXPENSES } from '@/constants/mock';
+import { Expense } from '../../types';
+import { DUMMYEXPENSES } from '../../constants/mock';
 
 import ExpensesSummary from "./Summary";
 import ExpensesList from './List';
-import Title from '@/ui/Title';
-import Nav from '@/ui/Nav';
-import Header from '@/ui/Header';
+import Title from '@expense-app/ui/lib/Title';
+import Nav from '@expense-app/ui/lib/Nav';
+import Header from '@expense-app/ui/lib/Header';
 
 
 type OutputProps = {

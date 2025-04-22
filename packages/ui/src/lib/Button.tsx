@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants/colors";
+import { COLORS } from "@/apps/mobile/src/constants/colors";
 import type { FunctionComponent } from "react";
 import { View, Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
 

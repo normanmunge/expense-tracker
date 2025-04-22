@@ -1,6 +1,6 @@
-import ExpensesOutput from '@/components/expenses/Output';
+import ExpensesOutput from '@/apps/mobile/src/components/expenses/Output';
 import { StyleSheet, View } from 'react-native';
-import { COLORS } from '@/constants/colors';
+import { COLORS } from '@/apps/mobile/src/constants/colors';
 import type { FunctionComponent } from 'react';
 const AllExpenses: FunctionComponent = () => {
     return (
