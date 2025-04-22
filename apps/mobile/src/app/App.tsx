@@ -11,7 +11,7 @@ import ManageExpense from "../screens/ManageExpense";
 import RecentExpense from "../screens/RecentExpense";
 import AllExpenses from "../screens/AllExpenses";
 import Settings from "../screens/Settings";
-import IconButton from "@expense-app/ui/lib/IconButton";
+import { IconButton } from "@expense-app/ui"
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
