@@ -1,5 +1,5 @@
 import { Text, StyleSheet } from 'react-native';
-import { COLORS } from '@/apps/mobile/src/constants/colors';
+// import { COLORS } from '@/apps/mobile/src/constants/colors'
 import type { FunctionComponent } from 'react';
 
 type Props = {
@@ -12,7 +12,7 @@ export const Title: FunctionComponent<Props> = ({children}) => {
 
 const styles = StyleSheet.create({
     textContainer: {
-        color: COLORS.text,
+        // color: COLORS.text,
         fontSize: 16,
         fontWeight: 'semibold'
     }

@@ -1,7 +1,7 @@
 import { Text, StyleSheet, Pressable } from 'react-native';
-import { COLORS } from '@/apps/mobile/src/constants/colors';
+//import { COLORS } from '@/apps/mobile/src/constants/colors';
 import type { FunctionComponent } from 'react';
-import { useNavigation } from '@react-navigation/native'
+// import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 type RootStackParamList = {
@@ -35,7 +35,7 @@ export const Title: FunctionComponent<Props> = ({children, href}) => {
 
 const styles = StyleSheet.create({
     textContainer: {
-        color: COLORS.navText,
+        //color: COLORS.navText,
         fontSize: 16,
         fontWeight: 'semibold'
     },

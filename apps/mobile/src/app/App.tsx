@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StatusBar } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -11,7 +11,8 @@ import ManageExpense from "../screens/ManageExpense";
 import RecentExpense from "../screens/RecentExpense";
 import AllExpenses from "../screens/AllExpenses";
 import Settings from "../screens/Settings";
-import { IconButton } from "@expense-app/ui"
+import config from "tamagui.config"
+import { TamaguiProvider } from 'tamagui';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -36,14 +37,15 @@ const ExpensesOverview = () => {
           tabBarInactiveTintColor: COLORS.inactive,
           headerRight: ({tintColor}) => {
             return (
-            <IconButton 
-              icon='add-outline' 
-              size={24} 
-              color={tintColor} 
-              onPress={() => {
-                navigation.navigate('Manage Expense')
-              }}
-            />
+              <View></View>
+            // <IconButton 
+            //   icon='add-outline' 
+            //   size={24} 
+            //   color={tintColor} 
+            //   onPress={() => {
+            //     navigation.navigate('Manage Expense')
+            //   }}
+            // />
             )
           }
         })}>
@@ -81,7 +83,7 @@ const ExpensesOverview = () => {
 
 export default function App() {
   return (
-    <React.Fragment>
+    <TamaguiProvider config={config}>
       <StatusBar />
       <SafeAreaView
         style={{
@@ -116,6 +118,6 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
       </SafeAreaView>
-    </React.Fragment>
+    </TamaguiProvider>
   )
 }

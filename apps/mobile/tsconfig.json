@@ -12,7 +12,8 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@expense-app/ui": ["packages/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules"],

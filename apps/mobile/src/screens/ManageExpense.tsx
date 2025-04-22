@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
-import { View, StyleSheet } from "react-native"
-import IconButton from "@expense-app/ui/lib/IconButton"
+import { View, StyleSheet, Text } from "react-native"
+//import IconButton from "@expense-app/ui/lib/IconButton"
 import { COLORS } from "../constants/colors"
-import Button from "@expense-app/ui/lib/Button"
+// import Button from "@expense-app/ui/lib/Button"
 
 type ManageExpenseProps = {
     route?: {
@@ -41,7 +41,8 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
 
     return (
         <View style={styles.container}>
-            <View style={styles.buttonContainer}>
+            <Text>Manage Expense</Text>
+            {/* <View style={styles.buttonContainer}>
                 <Button customStyle={styles.button} variant='flat' onPress={cancelHandler}>Cancel</Button>
                 <Button customStyle={styles.button} onPress={confirmHandler}>
                     {isEditing ? 'Update': 'Add'}
@@ -56,7 +57,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                         onPress={deleteExpense} 
                     />
                 </View>
-            )}
+            )} */}
         </View>
     )
 }

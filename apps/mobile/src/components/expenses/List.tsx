@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { Expense } from '../../types';
-import Card from '@expense-app/ui/lib/Card'
+//import Card from '@expense-app/ui/lib/Card'
 
 import { DateTime } from 'luxon'
 
@@ -52,7 +52,7 @@ type ListProps = {
 
 const ExpensesList: FunctionComponent<ListProps> = ({expenses }) => {
     return (
-        <Card>
+        // <Card>
             <FlatList 
                 data={expenses} 
                 renderItem={({ item }: {item: Expense}) => (
@@ -60,7 +60,7 @@ const ExpensesList: FunctionComponent<ListProps> = ({expenses }) => {
                 )} 
                 keyExtractor={(item) => item.id }
             />
-        </Card>
+        {/* </Card> */}
     )
 }
 

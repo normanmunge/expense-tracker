@@ -1,4 +1,4 @@
-import { COLORS } from "@/apps/mobile/src/constants/colors";
+//import { COLORS } from "@/apps/mobile/src/constants/colors";
 import type { FunctionComponent } from "react";
 import { View, Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
 
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     button: {
         padding: 8,
         borderRadius: 8,
-        backgroundColor: COLORS.primary
+        //backgroundColor: COLORS.primary
     },
     buttonText: {
         color: '#fff',
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: 16
     },
     flat: {
-        backgroundColor: COLORS.inactive
+       // backgroundColor: COLORS.inactive
     },
     flatText: {
         opacity: 0.2

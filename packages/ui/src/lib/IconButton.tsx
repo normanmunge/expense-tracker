@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { COLORS } from '@expense-app/mobile/src/constants/colors';
+//import { COLORS } from '@expense-app/mobile/src/constants/colors';
 
 
 type IconButtonProps = {
@@ -12,7 +12,7 @@ type IconButtonProps = {
     onPress?: () => void
 }
 
-export const IconButton: FunctionComponent<IconButtonProps> = ({ icon, size, color = COLORS.text, onPress }) => {
+export const IconButton: FunctionComponent<IconButtonProps> = ({ icon, size, color, onPress }) => {
     return (
         <Pressable 
             onPress={onPress}
