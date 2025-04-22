@@ -1,59 +1,36 @@
-//import { COLORS } from "@/apps/mobile/src/constants/colors";
-import type { FunctionComponent } from "react";
-import { View, Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
+import { styled, Button } from "tamagui";
 
-enum ButtonSize {
-    Large = 'Large',
-    Normal = 'Normal',
-    Small = 'Small',
-    Tiny = 'Tiny'
-}
-
-type ButtonProps = {
-    children: React.ReactNode,
-    disabled?: boolean,
-    size?: keyof typeof ButtonSize,
-    variant?: string,
-    onPress: () => void,
-    customStyle?: ViewStyle
-}
-
-
-export const Button: FunctionComponent<ButtonProps> = ({ children, onPress, disabled = false, variant, customStyle }) => {
-    return (
-        <View style={customStyle}>
-            <Pressable onPress={onPress}>
-                <View style={[styles.button, disabled && styles.disabled, variant === 'flat' && styles.flat]}>
-                    <Text style={[styles.buttonText, variant === 'flat' && styles.flatText]}>
-                        {children}
-                    </Text>
-                </View>
-            </Pressable>
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    button: {
-        padding: 8,
-        borderRadius: 8,
-        //backgroundColor: COLORS.primary
-    },
-    buttonText: {
-        color: '#fff',
-        textAlign: 'center'
-    },
-    pressed: {
-        opacity: 0.5,
-        borderRadius: 16
-    },
-    flat: {
-       // backgroundColor: COLORS.inactive
-    },
-    flatText: {
-        opacity: 0.2
-    },
-    disabled: {
-        backgroundColor: 'gray'
-    }
+export const UIButton = styled(Button, {
+    name: 'UIButton',
+    variants: {
+        iconify: {
+            true: {
+                backgroundColor: 'transparent',
+                borderWidth: 0,
+                padding: 0,
+                margin: 0,
+                borderRadius: 0,
+                borderColor: 'transparent',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'row',
+                gap: 0,
+                width: 'auto',
+                height: 'auto',
+                color: '$color',
+                size: '$9',
+                
+            }
+        },
+        rounded: {
+            true: {
+                br: '100%',
+                bc: '$color',
+                color: '$color',
+                size: '$9',
+                w: '$9',
+                h: '$9',
+            }
+        }
+    } as const
 })

@@ -6,6 +6,7 @@
 // export * from './lib/Title';
 
 export { default as tamaguiConfig } from './tamagui.config';
+export { UIButton } from './lib/Button';
 
 //export type { AppConfig } from './tamagui.config';
 

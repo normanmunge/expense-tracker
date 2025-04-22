@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+
 
 //import { COLORS } from '@expense-app/mobile/src/constants/colors';
 
