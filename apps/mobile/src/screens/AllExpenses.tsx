@@ -1,16 +1,15 @@
 //import ExpensesOutput from '@/apps/mobile/src/components/expenses/Output';
-import { View, Text } from 'react-native';
 // import { COLORS } from '@/apps/mobile/src/constants/colors';
 
-import { Button } from 'tamagui';
+import { Button, Stack } from 'tamagui';
 
 import type { FunctionComponent } from 'react';
 const AllExpenses: FunctionComponent = () => {
     return (
-        <View>
+        <Stack>
             {/* <ExpensesOutput period='Total' /> */}
-            <Button>All Expenses</Button>
-        </View>
+            <Button bc={'red'} size={'$5'}>All Expenses</Button>
+        </Stack>
     )
 }
 

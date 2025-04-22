@@ -1,13 +1,13 @@
 import type { FunctionComponent } from 'react';
-import { View, Text } from 'react-native';
+import { Stack, H2 } from 'tamagui';
 //import ExpensesOverview from '../components/expenses/Overview';
 
 const RecentExpense: FunctionComponent = () => {
     return (
-        <View>
-            <Text>Recent Expenses</Text>
+        <Stack>
+            <H2>Recent Expenses</H2>
             {/* <ExpensesOverview /> */}
-        </View>
+        </Stack>
     )
 }
 

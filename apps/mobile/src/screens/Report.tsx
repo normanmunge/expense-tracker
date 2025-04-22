@@ -1,13 +1,13 @@
-import { View, Text } from 'react-native';
 import type { FunctionComponent } from 'react';
+import { Stack, H3 } from 'tamagui';
 
 const Report: FunctionComponent = () => {
     return (
-        <View>
-            <Text>
+        <Stack>
+            <H3>
                 report screen
-            </Text>
-        </View>
+            </H3>
+        </Stack>
     )
 }
 

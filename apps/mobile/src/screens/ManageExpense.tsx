@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
-import { View, StyleSheet, Text } from "react-native"
 //import IconButton from "@expense-app/ui/lib/IconButton"
 import { COLORS } from "../constants/colors"
+import { Stack, H1 } from "tamagui"
 // import Button from "@expense-app/ui/lib/Button"
 
 type ManageExpenseProps = {
@@ -40,8 +40,8 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     }
 
     return (
-        <View style={styles.container}>
-            <Text>Manage Expense</Text>
+        <Stack>
+            <H1>Manage Expense</H1>
             {/* <View style={styles.buttonContainer}>
                 <Button customStyle={styles.button} variant='flat' onPress={cancelHandler}>Cancel</Button>
                 <Button customStyle={styles.button} onPress={confirmHandler}>
@@ -58,32 +58,8 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     />
                 </View>
             )} */}
-        </View>
+        </Stack>
     )
 }
 
 export default ManageExpense;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 24,
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10
-    },
-    button: {
-        minWidth: 120,
-        marginHorizontal: 8
-    },
-    deleteContainer: {
-        marginTop: 16,
-        paddingTop: 8,
-        borderTopWidth: 2,
-        borderTopColor: COLORS.background,
-        alignItems: 'center'
-    }
-})

@@ -1,13 +1,13 @@
-import { View, Text } from 'react-native';
 import type { FunctionComponent } from 'react';
+import { Stack, H4 } from 'tamagui';
 
 const Settings: FunctionComponent = () => {
     return (
-        <View>
-            <Text>
+        <Stack>
+            <H4>
                 settings page
-            </Text>
-        </View>
+            </H4>
+        </Stack>
     )
 }
 
