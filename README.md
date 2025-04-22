@@ -1,50 +1,88 @@
-# Welcome to your Expo app 👋
+# Expense Tracker
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A React Native mobile application for tracking personal expenses built with Expo and TypeScript.
 
-## Get started
+## Overview
 
-1. Install dependencies
+This expense tracker application is a personal project developed for upskilling purposes. It allows users to record, categorize, and visualize their expenses to help manage personal finances.
 
-   ```bash
-   npm install
+## Tech Stack
+
+- **Framework**: React Native with Expo
+- **Language**: TypeScript
+- **Navigation**: React Navigation
+- **Package Manager**: pnpm
+- **Node Version**: 22^
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js (v22^)
+- pnpm
+- Expo CLI
+- iOS Simulator / Android Emulator (optional)
+
+## Installation
+
+1. Clone this repository:
+   ```
+   git clone https://github.com/normanmunge/expense-tracker.git
+   cd expense-tracker
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+2. Install dependencies using pnpm:
+   ```
+   pnpm install
    ```
 
-In the output, you'll find options to open the app in a
+3. Start the development server:
+   ```
+   pnpm start
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+4. Run on specific platform:
+   ```
+   # For iOS
+   pnpm ios
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+   # For Android
+   pnpm android
 
-## Get a fresh project
+   # For web
+   pnpm web
+   ```
 
-When you're ready, run:
+## Features
 
-```bash
-npm run reset-project
-```
+- Track daily expenses with categories
+- Visualize spending patterns
+- Set budgets and receive notifications
+- Export expense reports
+- Secure data storage
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Scripts
 
-## Learn more
+- `pnpm start`: Start the Expo development server
+- `pnpm android`: Start the app on Android emulator
+- `pnpm ios`: Start the app on iOS simulator
+- `pnpm web`: Start the app in a web browser
+- `pnpm test`: Run tests
+- `pnpm lint`: Run ESLint
+- `pnpm type-check`: Run TypeScript type checking
 
-To learn more about developing your project with Expo, look at the following resources:
+## Contributing
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+As this is a personal project for upskilling purposes, contributions aren't actively sought. However, feedback and suggestions are welcome.
 
-## Join the community
+## License
 
-Join our community of developers creating universal apps.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Acknowledgments
+
+- Expo team for the excellent React Native development experience
+- React Navigation for the routing solution
+
+---
+
+This project was bootstrapped with Expo.
