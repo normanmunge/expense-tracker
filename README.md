@@ -1,78 +1,95 @@
-# Expense Tracker
+# Expense Tracker App
 
-A React Native mobile application for tracking personal expenses built with Expo and TypeScript.
-
-## Overview
-
-This expense tracker application is a personal project developed for upskilling purposes. It allows users to record, categorize, and visualize their expenses to help manage personal finances.
+A mobile application for tracking personal expenses, built with React Native, Expo, and Tamagui UI. This project is designed for upskilling purposes and demonstrates modern mobile development practices.
 
 ## Tech Stack
 
-- **Framework**: React Native with Expo
-- **Language**: TypeScript
-- **Navigation**: React Navigation
-- **Package Manager**: pnpm
-- **Node Version**: 22^
+- **React Native & Expo**: Core mobile framework
+- **TypeScript**: For type-safe code
+- **Tamagui UI**: For consistent and customizable UI components
+- **React Navigation**: For app routing and navigation
+- **NX Monorepo**: For managing the workspace with multiple packages
+- **PNPM**: Package manager
+
+## Project Structure
+
+This project is structured as an NX monorepo containing:
+
+```
+expense-tracker/
+├── apps/
+│   └── mobile/      # The main React Native mobile application
+├── packages/
+│   └── ui/          # Shared UI components and utilities
+├── nx.json
+├── package.json
+└── README.md
+```
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed:
-- Node.js (v22^)
-- pnpm
+- Node.js v22.13.0
+- PNPM
 - Expo CLI
-- iOS Simulator / Android Emulator (optional)
+- iOS Simulator or Android Emulator (for local development)
 
-## Installation
+## Getting Started
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/normanmunge/expense-tracker.git
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/expense-tracker.git
    cd expense-tracker
    ```
 
-2. Install dependencies using pnpm:
-   ```
+2. Install dependencies:
+   ```bash
    pnpm install
    ```
 
-3. Start the development server:
-   ```
-   pnpm start
-   ```
+### Running the Application
 
-4. Run on specific platform:
-   ```
-   # For iOS
-   pnpm ios
+```bash
+# Start the mobile app
+pnpm nx run mobile:start
 
-   # For Android
-   pnpm android
+# Run on iOS
+pnpm nx run mobile:ios
 
-   # For web
-   pnpm web
-   ```
+# Run on Android
+pnpm nx run mobile:android
+```
+
+## Development
+
+### Project Commands
+
+```bash
+# Generate a new component in the UI package
+pnpm nx g @nx/react:component ComponentName --project=ui
+
+# Lint the mobile app
+pnpm nx lint mobile
+
+# Run tests for the mobile app
+pnpm nx test mobile
+
+# Build the mobile app
+pnpm nx build mobile
+```
+
+### Code Structure
+
+- **Components**: UI components are organized in the `packages/ui` directory
+- **Screens**: App screens are located in `apps/mobile/src/screens`
 
 ## Features
 
-- Track daily expenses with categories
-- Visualize spending patterns
-- Set budgets and receive notifications
-- Export expense reports
-- Secure data storage
-
-## Scripts
-
-- `pnpm start`: Start the Expo development server
-- `pnpm android`: Start the app on Android emulator
-- `pnpm ios`: Start the app on iOS simulator
-- `pnpm web`: Start the app in a web browser
-- `pnpm test`: Run tests
-- `pnpm lint`: Run ESLint
-- `pnpm type-check`: Run TypeScript type checking
-
-## Contributing
-
-As this is a personal project for upskilling purposes, contributions aren't actively sought. However, feedback and suggestions are welcome.
+- Track personal expenses
+- Categorize expenses
+- View spending reports and analytics
+- Manage budgets and financial goals
 
 ## License
 
@@ -80,9 +97,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Expo team for the excellent React Native development experience
-- React Navigation for the routing solution
-
----
-
-This project was bootstrapped with Expo.
+- [Expo](https://expo.dev/) - For the React Native development platform
+- [Tamagui](https://tamagui.dev/) - For the UI component library
+- [React Navigation](https://reactnavigation.org/) - For navigation solutions
+- [NX](https://nx.dev/) - For the monorepo tooling
