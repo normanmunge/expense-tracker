@@ -1,4 +1,4 @@
-import { styled, Button } from "tamagui";
+import { styled, Button, GetProps } from "tamagui";
 
 export const UIButton = styled(Button, {
     name: 'UIButton',
@@ -32,5 +32,11 @@ export const UIButton = styled(Button, {
                 h: '$9',
             }
         }
-    } as const
+    } as const,
+    defaultVariants: {
+        iconify: false,
+        rounded: false
+    }
 })
+
+export type UIButtonProps = GetProps<typeof UIButton>
