@@ -10,42 +10,47 @@ const transactions: Transaction[] = [
     {
         id: '1',
         name: 'Uber',
-        type: 'Mpesa',
+        paymentMethod: 'Mpesa',
         amount: 100,
         date: '2021-01-01',
         category: 'Transport',
+        description: 'Uber ride to the airport',
     },
     {
         id: '2',
         name: 'KFC',
-        type: 'Mpesa',
+        paymentMethod: 'Mpesa',
         amount: 1000,
         date: '2021-01-01',
         category: 'Food',
+        description: 'KFC meal',
     },
     {
         id: '3',
         name: 'Amazon Prime',
-        type: 'Debit Card',
+        paymentMethod: 'Card',
         amount: 1000,
         date: '2021-01-01',
         category: 'Shopping',
+        description: 'Amazon Prime subscription',
     },
     {
         id: '4',
         name: 'Book Purchase',
-        type: 'Mpesa',
+        paymentMethod: 'Mpesa',
         amount: 1000,
         date: '2021-01-01',
         category: 'Shopping',
+        description: 'Book purchase',
     },
     {
         id: '5',
         name: 'Water Purchase',
-        type: 'Mpesa',
+        paymentMethod: 'Mpesa',
         amount: -3000,
         date: '2021-01-01',
         category: 'Bills',
+        description: 'Water bill',
     }
 ]
 
@@ -58,7 +63,10 @@ const formatCurrency = (amount: number) => {
   };
 
 type RootStackParamList = {
-    'Manage Expense': { expenseId: string };
+    'Manage Expense': { 
+        expenseId: string,
+        data?: Transaction
+    };
 }
 
 const AllExpenses = () => {
@@ -66,7 +74,8 @@ const AllExpenses = () => {
 
     const expensePressHandler = (id: string) => {
         navigation.navigate('Manage Expense', { 
-            expenseId: id
+            expenseId: id,
+            data: transactions.find(transaction => transaction.id === id)
         });
     }
     return (
@@ -106,7 +115,7 @@ const AllExpenses = () => {
                             <Button justifyContent="space-between" chromeless onPress={() => expensePressHandler(transaction.id)}>
                                 <YStack>
                                     <Text fontSize="$5" fontWeight="500">{transaction.name}</Text>
-                                    <Text color="$gray11">{transaction.type}</Text>
+                                    <Text color="$gray11">{transaction.paymentMethod}</Text>
                                 </YStack>
                                 <YStack alignItems="flex-end">
                                     <Text 

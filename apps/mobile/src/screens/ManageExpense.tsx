@@ -1,24 +1,60 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, useEffect, useState } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
 //import IconButton from "@expense-app/ui/lib/IconButton"
-import { COLORS } from "../constants/colors"
-import { Stack, H1, Form, Label, Input, Button } from "tamagui"
+import { Stack, Form, Label, Input, Button, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
 // import Button from "@expense-app/ui/lib/Button"
+import { useForm, Controller, SubmitHandler } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { UiInput } from "@expense-app/ui"
+import { PaymentMethod, Transaction } from "../types"
 
 type ManageExpenseProps = {
     route?: {
         params: {
-            expenseId: string
+            expenseId: string,
+            data?: Transaction
         }
     },
     navigation?: NativeStackNavigationProp<any>
 }
 
-const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigation }) => {
+const expenseSchema = z.object({
+    name: z.string().min(1, {message: 'Name is required'}),
+    amount: z.string().min(1, {message: 'Amount is required'}),
+    date: z.string().min(1, {message: 'Date is required'}),
+    description: z.string().min(1, {message: 'Description is required'}),
+    category: z.string().min(1, {message: 'Category is required'}),
+    paymentMethod: z.enum(['Mpesa', 'Bank', 'Cash', 'Card']),
+})
 
+type ExpenseFormData = z.infer<typeof expenseSchema>
+
+
+const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigation }) => {
+    const data = route?.params?.data
     const expenseId = route?.params?.expenseId;
     const isEditing = !!expenseId
+
+    const { 
+        register,
+        control, 
+        handleSubmit, 
+        setError, 
+        formState: 
+        { errors, isValid, isSubmitting }
+    } = useForm<ExpenseFormData>({
+        defaultValues: {
+            name: data?.name || '',
+            amount: data?.amount ? String(data.amount) : '',
+            date: data?.date ? data.date : new Date().toISOString().split('T')[0],
+            description: data?.description || '',
+            category: data?.category || '',
+            paymentMethod: data?.paymentMethod as PaymentMethod || 'Mpesa',
+        },
+        resolver: zodResolver(expenseSchema)
+    })
 
     useLayoutEffect(() => {
         navigation?.setOptions({
@@ -39,47 +75,119 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
         navigation?.goBack()
     }
 
-    const handleSubmit = (values: any) => {
+    const onSubmit: SubmitHandler<ExpenseFormData> = ((values) => {
         console.log(values)
-    }
+    })
 
     return (
-        <Stack>
-            {/* <Formik onSubmit={handleSubmit}> */}
-                <Form mx={'$4'}>
-                    <Label px={'$4'} htmlFor='name'>Name</Label>
-                    <Input id="name" size={'$4'} />
+        <ScrollView>
+            <Form 
+                mx={'$4'}
+                gap={'$2'}
+                minWidth={300}
+                borderWidth={1}
+                borderRadius={'$4'}
+                borderColor={'$borderColor'}
+                padding={'$4'}
+                backgroundColor={'$background'}
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                {/* <UiInput label="Name" size={'$4'} placeholder="Enter name" register={register} name="name" /> */}
+                <Label>Name</Label>
+                {/* <UiInput control={control} size={'$4'} placeholder="Enter name" register={register} name="name" /> */}
+                <Controller
+                    control={control}
+                    name="name"
+                    render={({ field }) => (
+                        <Input
+                            id="name"
+                            size={'$4'}
+                            placeholder="Enter name"
+                            value={field.value.toString()}
+                            onChangeText={field.onChange}
+                        />
+                    )}
+                />
+                {errors.name && <Paragraph color={'$error'}>{errors.name.message}</Paragraph>}
 
-                    <Label px={'$4'} htmlFor='amount'>Amount</Label>
-                    <Input id="amount" size={'$4'} />
+                {/* <UiInput label="Amount" size={'$4'} placeholder="Enter amount" register={register} name="amount" /> */}
+                <Label>Amount</Label>
+                <Controller
+                    control={control}
+                    name="amount"
+                    render={({ field }) => (
+                        <Input
+                            id="amount"
+                            size={'$4'}
+                            placeholder="Enter amount"
+                            value={field.value}
+                            onChangeText={field.onChange}
+                        />
+                    )}
+                />
 
-                    <Label px={'$4'} htmlFor='date'>Date</Label>
-                    <Input id="date" size={'$4'} />
 
-                    <Label px={'$4'} htmlFor='description'>Description</Label>
-                    <Input id="description" size={'$4'} />
+                {errors.amount && <Paragraph color={'$error'}>{errors.amount.message}</Paragraph>}
 
-                    <Button>Submit</Button>
-                </Form>
+                {/* <UiInput label="Category" size={'$4'} placeholder="Enter category" register={register} name="category" /> */}
+                <Label>Category</Label>
+                <Controller
+                    control={control}
+                    name="category"
+                    render={({ field }) => (
+                        <Input
+                            id="category"
+                            size={'$4'}
+                            placeholder="Enter category"
+                            value={field.value}
+                            onChangeText={field.onChange}
+                        />
+                    )}
+                />
+
+                {errors.category && <Paragraph color={'$error'}>{errors.category.message}</Paragraph>}
+
+                {/* <UiInput label="Date" size={'$4'} placeholder="YYYY-MM-DD" register={register} name="date" /> */}
+                <Label>Date</Label>
+                <Controller
+                    control={control}
+                    name="date"
+                    render={({ field }) => (
+                        <Input
+                            id="date"
+                            size={'$4'}
+                            placeholder="YYYY-MM-DD"
+                            value={field.value}
+                            onChangeText={field.onChange}
+                        />
+                    )}
+                />
+                {errors.date && <Paragraph color={'$error'}>{errors.date.message}</Paragraph>}
+
+                <Label px={'$4'} htmlFor='description'>Description</Label>
+                <Controller
+                    control={control}
+                    name="description"
+                    render={({ field }) => (
+                        <TextArea 
+                            placeholder="Enter description" 
+                            id="description" size={'$4'} 
+                            value={field.value}
+                            onChangeText={field.onChange}
+                        />
+                    )}
+                />
+                {errors.description && <Paragraph color={'$error'}>{errors.description.message}</Paragraph>}
+
+                <Form.Trigger asChild disabled={!isValid || isSubmitting}>
+                    <Button icon={isSubmitting ? <Spinner /> : undefined}>
+                        {isSubmitting ? 'Adding...' : 'Add'}
+                        {/* {isSubmitting && isEditing ? 'Updating...' : 'Update' }  */}
+                    </Button>
+                </Form.Trigger>
                 
-            {/* </Formik> */}
-            {/* <View style={styles.buttonContainer}>
-                <Button customStyle={styles.button} variant='flat' onPress={cancelHandler}>Cancel</Button>
-                <Button customStyle={styles.button} onPress={confirmHandler}>
-                    {isEditing ? 'Update': 'Add'}
-                </Button>
-            </View>
-            {isEditing && (
-                <View style={styles.deleteContainer}>
-                    <IconButton 
-                        icon='trash-outline' 
-                        size={36} 
-                        color={COLORS.error} 
-                        onPress={deleteExpense} 
-                    />
-                </View>
-            )} */}
-        </Stack>
+            </Form>
+        </ScrollView>
     )
 }
 
