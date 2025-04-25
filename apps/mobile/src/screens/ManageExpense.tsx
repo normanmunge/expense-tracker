@@ -8,19 +8,21 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { UiInput } from "@expense-app/ui"
-import { PaymentMethod, Transaction } from "../types"
+import { PaymentMethod, Expense } from "../types"
+import useExpenseStore from "../store/expenseStore"
 
 type ManageExpenseProps = {
     route?: {
         params: {
             expenseId: string,
-            data?: Transaction
+            data?: Expense
         }
     },
     navigation?: NativeStackNavigationProp<any>
 }
 
 const expenseSchema = z.object({
+    id: z.string().optional(),
     name: z.string().min(1, {message: 'Name is required'}),
     amount: z.string().min(1, {message: 'Amount is required'}),
     date: z.string().min(1, {message: 'Date is required'}),
@@ -36,9 +38,9 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     const data = route?.params?.data
     const expenseId = route?.params?.expenseId;
     const isEditing = !!expenseId
+    const { updateExpense, addExpense } = useExpenseStore()
 
     const { 
-        register,
         control, 
         handleSubmit, 
         setError, 
@@ -47,7 +49,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     } = useForm<ExpenseFormData>({
         defaultValues: {
             name: data?.name || '',
-            amount: data?.amount ? String(data.amount) : '',
+            amount: data?.amount ? String(data.amount) : '0',
             date: data?.date ? data.date : new Date().toISOString().split('T')[0],
             description: data?.description || '',
             category: data?.category || '',
@@ -71,12 +73,27 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
         navigation?.goBack()
     }
 
-    const confirmHandler = () => {
-        navigation?.goBack()
-    }
-
     const onSubmit: SubmitHandler<ExpenseFormData> = ((values) => {
-        console.log(values)
+        if (isEditing) {
+            const data = {
+                ...values,
+                amount: Number(values.amount)
+            }
+            updateExpense(expenseId, data)
+        } else {
+            
+            const uuid = String(Date.now())
+            
+            const data = {
+                ...values,
+                id: uuid,
+                amount: Number(values.amount)
+            }
+
+            addExpense(data)
+        }
+        
+        navigation?.goBack()
     })
 
     return (
@@ -120,7 +137,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                             id="amount"
                             size={'$4'}
                             placeholder="Enter amount"
-                            value={field.value}
+                            value={String(field.value)}
                             onChangeText={field.onChange}
                         />
                     )}
@@ -181,8 +198,10 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
 
                 <Form.Trigger asChild disabled={!isValid || isSubmitting}>
                     <Button icon={isSubmitting ? <Spinner /> : undefined}>
-                        {isSubmitting ? 'Adding...' : 'Add'}
-                        {/* {isSubmitting && isEditing ? 'Updating...' : 'Update' }  */}
+                        {isEditing 
+                            ? (isSubmitting ? 'Updating...': 'Update' )
+                            : (isSubmitting ? 'Adding...' : 'Add')
+                        }
                     </Button>
                 </Form.Trigger>
                 
