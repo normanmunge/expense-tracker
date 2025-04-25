@@ -117,3 +117,12 @@ node_modules/
 node_modules/
 
 llm-instructions/*
+
+tmp/
+
+ios/
+android/
+
+.vscode/
+
+.nx/
