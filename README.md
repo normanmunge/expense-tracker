@@ -10,6 +10,8 @@ A mobile application for tracking personal expenses, built with React Native, Ex
 - **React Navigation**: For app routing and navigation
 - **NX Monorepo**: For managing the workspace with multiple packages
 - **PNPM**: Package manager
+- **Zustand**: Client state management
+- **MMKV**: Persistent storage
 
 ## Project Structure
 
@@ -51,6 +53,9 @@ expense-tracker/
 ### Running the Application
 
 ```bash
+# Create a prebuild for persistent storage
+pnpm nx prebuild
+
 # Start the mobile app
 pnpm nx run mobile:start
 
@@ -67,7 +72,7 @@ pnpm nx run mobile:android
 
 ```bash
 # Generate a new component in the UI package
-pnpm nx g @nx/react:component ComponentName --project=ui
+pnpm nx g @nx/expo:component ComponentName --project=ui
 
 # Lint the mobile app
 pnpm nx lint mobile
