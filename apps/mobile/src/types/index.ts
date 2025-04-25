@@ -1,7 +1,7 @@
 
 export type PaymentMethod = 'Cash' | 'Bank' | 'Mpesa' | 'Card';
 
-export interface Transaction {
+export interface Expense {
     id: string;
     name: string;
     amount: number;
