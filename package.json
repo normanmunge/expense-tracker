@@ -15,6 +15,7 @@
     "test": "nx test",
     "lint": "nx lint",
     "build": "nx run-many --target=build --all",
+    "prebuild": "npx expo prebuild",
     "dev:mobile": "nx run mobile:start",
     "clean": "nx reset && rm -rf node_modules && rm -rf dist"
   },
@@ -26,7 +27,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tslib": "^2.3.0",
-    "zod": "^3.24.3"
+    "zod": "^3.24.3",
+    "expo": "~52.0.46",
+    "react-native": "0.76.9"
   },
   "devDependencies": {
     "@nx/eslint": "20.8.0",
