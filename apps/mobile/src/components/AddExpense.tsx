@@ -12,7 +12,6 @@ const AddExpense = () => {
             <YStack jc='center' ac='center' gap='$5'>
                 <Text textAlign='center'>You currently have no expenses 😊 </Text>
                 <Button onPress={() => {
-                    console.log('navigate to manage expense')
                   navigation.navigate('Manage Expense')
                 }}>
                     Add Expense

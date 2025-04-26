@@ -44,8 +44,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
         control, 
         handleSubmit, 
         setError, 
-        formState: 
-        { errors, isValid, isSubmitting }
+        formState: { errors, isValid, isSubmitting }
     } = useForm<ExpenseFormData>({
         defaultValues: {
             name: data?.name || '',
