@@ -11,6 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ManageExpense from "../screens/ManageExpense";
 import AllExpenses from "../screens/AllExpenses";
 import RecentExpenses from "../screens/RecentExpenses";
+import Login from '../screens/auth/Login'
 import Settings from "../screens/Settings";
 import config from "tamagui.config"
 import { TamaguiProvider, View } from 'tamagui';
@@ -64,8 +65,10 @@ const ExpensesOverview = () => {
         }
       })}>
           <BottomTabs.Screen 
-            name="Recent Expenses" 
-            component={RecentExpenses} 
+            // name="Recent Expenses" 
+            // component={RecentExpenses}
+            name="Login" 
+            component={Login} 
             options={{
               tabBarIcon: ({color, size}) => (
                 <Ionicons name="home-outline" size={size} color={color} />
