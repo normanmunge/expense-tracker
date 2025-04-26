@@ -7,7 +7,10 @@
 
 export { default as tamaguiConfig } from './tamagui.config';
 export { UIButton } from './lib/Button';
-export { UiInput } from './lib/Input';
+export { UITitle } from './lib/Text';
+export { UIView } from './lib/View';
+export { UIInput } from './lib/Input'
+
 
 //export type { AppConfig } from './tamagui.config';
 
