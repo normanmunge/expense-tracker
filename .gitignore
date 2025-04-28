@@ -126,3 +126,5 @@ android/
 .vscode/
 
 .nx/
+
+.env
