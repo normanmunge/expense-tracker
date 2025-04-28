@@ -5,6 +5,7 @@ import { tamaguiConfig } from '@expense-app/ui'
 import { TamaguiProvider, YStack, Stack, Paragraph } from 'tamagui';
 import ProtectedNavigation from './navigation/ProtectedNavigation';
 import AuthNavigation from './navigation/AuthNavigation';
+import { useColorScheme } from 'react-native';
 
 // class ErrorBoundary extends React.Component {
 //   state = { hasError: false, error: null };
@@ -27,10 +28,12 @@ import AuthNavigation from './navigation/AuthNavigation';
 // }
 
 export default function App() {
+  const colorScheme = useColorScheme();
+
   return (
     // <ErrorBoundary>
       <NavigationContainer>
-        <TamaguiProvider config={tamaguiConfig} defaultTheme='dark' >
+        <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} >
           <StatusBar style="light" />
             <YStack flex={1} backgroundColor={'$background'}>
               <AuthNavigation />
