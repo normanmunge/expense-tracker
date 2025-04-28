@@ -1,4 +1,4 @@
-import { View, FlatList, Text, StyleSheet, Pressable } from "react-native";
+import { Stack } from "tamagui";
 import type { FunctionComponent } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -27,21 +27,22 @@ const ExpenseItem: FunctionComponent<Expense> = (itemData) => {
     }
 
     return (
-        <Pressable 
-            onPress={expensePressHandler} 
-            style={({pressed}) => pressed && styles.pressed}
-        >
-            <View style={styles.container}>
-                <View style={styles.descriptionContainer}>
-                    <Text>{itemData.description} - {itemData.category} </Text>
-                    <Text>{itemData.amount.toFixed(2)}</Text>
-                </View>
-                <View style={styles.modeContainer}>
-                    <Text>{itemData.mode}</Text>
-                    <Text>{DateTime.fromJSDate(itemData.date).toLocaleString(DateTime.DATE_MED)}</Text>
-                </View>
-            </View>
-        </Pressable>
+        <Stack></Stack>
+        // <Pressable 
+        //     onPress={expensePressHandler} 
+        //     style={({pressed}) => pressed && styles.pressed}
+        // >
+        //     {/* <View style={styles.container}>
+        //         <View style={styles.descriptionContainer}>
+        //             <Text>{itemData.description} - {itemData.category} </Text>
+        //             <Text>{itemData.amount.toFixed(2)}</Text>
+        //         </View>
+        //         <View style={styles.modeContainer}>
+        //             <Text>{itemData.mode}</Text>
+        //             <Text>{DateTime.fromJSDate(itemData.date).toLocaleString(DateTime.DATE_MED)}</Text>
+        //         </View>
+        //     </View> */}
+        // </Pressable>
        
     )
 }
@@ -65,22 +66,3 @@ const ExpensesList: FunctionComponent<ListProps> = ({expenses }) => {
 }
 
 export default ExpensesList;
-
-
-const styles = StyleSheet.create({
-    container: {
-        marginBottom: 30,
-    },
-    descriptionContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between'
-    },
-    modeContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 5
-    },
-    pressed: {
-        opacity: 0.75
-    }
-})

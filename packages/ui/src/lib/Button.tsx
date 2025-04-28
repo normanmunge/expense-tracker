@@ -25,7 +25,7 @@ export const UIButton = styled(Button, {
         rounded: {
             true: {
                 br: '100%',
-                bc: '$color',
+                bc: '$primary',
                 color: '$color',
                 size: '$9',
                 w: '$9',
@@ -34,7 +34,7 @@ export const UIButton = styled(Button, {
         },
         defaultDark: {
             true: {
-                backgroundColor: '#fff',
+                backgroundColor: '$white',
                 borderRadius: '$2'
             }
         },
@@ -42,9 +42,9 @@ export const UIButton = styled(Button, {
             true: {
                 backgroundColor: 'transparent',
                 borderRadius: '$2',
-                color: '#fff',
-                borderColor: '#888888',
-                outlineColor:'#888888',
+                color: '$white',
+                borderColor: '$gray900',
+                outlineColor:'$gray900',
                 borderWidth: 1,
                 paddingVertical: 5
             }
@@ -52,7 +52,8 @@ export const UIButton = styled(Button, {
     } as const,
     defaultVariants: {
         iconify: false,
-        rounded: false
+        rounded: false,
+        isSocialProviderButton: false
     }
 })
 

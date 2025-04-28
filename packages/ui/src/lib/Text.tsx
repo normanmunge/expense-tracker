@@ -1,5 +1,4 @@
 import { Text, styled } from 'tamagui'
-// import { COLORS } from '@/apps/mobile/src/constants/colors'
 
 export const UITitle = styled(Text, {
     variants: {
@@ -7,13 +6,13 @@ export const UITitle = styled(Text, {
             true: {
                 fontSize: 36,
                 backgroundColor: 'transparent',
-                color: '#fff'
+                color: '$white'
             }
         },
         isDefault: {
             true: {
                 fontSize: 16,
-                color: '#fff'
+                color: '$white'
             }
         }
     }

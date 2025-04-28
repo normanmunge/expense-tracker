@@ -1,8 +1,7 @@
-import { Text, StyleSheet, Pressable } from 'react-native';
-//import { COLORS } from '@/apps/mobile/src/constants/colors';
+import { Stack, Text, styled } from 'tamagui';
 import type { FunctionComponent } from 'react';
-// import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 
 type RootStackParamList = {
     [key: string]: undefined;
@@ -13,33 +12,34 @@ type Props = {
     href?: string;
 }
 
-export const Title: FunctionComponent<Props> = ({children, href}) => {
+const StyledText = styled(Text, {
+    fontSize: 16,
+    fontWeight: 'semibold',
+    color: '$white',
+});
 
+const StyledStack = styled(Stack, {
+    variants: {
+        pressed: {
+            true: {
+                opacity: 0.75
+            }
+        }
+    }
+});
+
+export const Title: FunctionComponent<Props> = ({children, href}) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const navigationHandler = () => {
         console.log('navigationHandler', href)
         if (!href) return;
-
         navigation.navigate(href)
     }
+
     return (
-        <Pressable
-            style={({pressed}) => pressed && styles.pressed}
-            onPress={navigationHandler}
-        >
-            <Text style={styles.textContainer}>{children}</Text>
-        </Pressable> 
+        <StyledStack onPress={navigationHandler}>
+            <StyledText>{children}</StyledText>
+        </StyledStack>
     )
 }
-
-const styles = StyleSheet.create({
-    textContainer: {
-        //color: COLORS.navText,
-        fontSize: 16,
-        fontWeight: 'semibold'
-    },
-    pressed: {
-        opacity: 0.75
-    }
-})
