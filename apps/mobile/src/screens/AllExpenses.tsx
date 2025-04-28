@@ -5,7 +5,7 @@ import { Stack, H2 } from 'tamagui';
 const AllExpenses: FunctionComponent = () => {
     return (
         <Stack>
-            <H2>Recent Expenses</H2>
+            <H2>All Expenses</H2>
             {/* <ExpensesOverview /> */}
         </Stack>
     )

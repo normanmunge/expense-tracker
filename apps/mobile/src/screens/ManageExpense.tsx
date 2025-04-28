@@ -1,13 +1,10 @@
-import { FunctionComponent, useEffect, useState } from "react"
+import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
-//import IconButton from "@expense-app/ui/lib/IconButton"
-import { Stack, Form, Label, Input, Button, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
-// import Button from "@expense-app/ui/lib/Button"
+import { Form, Label, Input, Button, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { UiInput } from "@expense-app/ui"
+import { zodResolver } from '@hookform/resolvers/zod';
 import { PaymentMethod, Expense } from "../types"
 import useExpenseStore from "../store/expenseStore"
 
