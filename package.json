@@ -23,13 +23,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "expo": "~52.0.46",
     "luxon": "^3.6.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-native": "0.76.9",
+    "tamagui": "^1.126.1",
     "tslib": "^2.3.0",
-    "zod": "^3.24.3",
-    "expo": "~52.0.46",
-    "react-native": "0.76.9"
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@nx/eslint": "20.8.0",
