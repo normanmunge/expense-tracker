@@ -35,7 +35,11 @@ export const UIButton = styled(Button, {
         defaultDark: {
             true: {
                 backgroundColor: '$white',
-                borderRadius: '$2'
+                borderRadius: '$2',
+                color: '$white',
+                borderWidth: 1,
+                paddingVertical: 5,
+                size:'$4'
             }
         },
         isSocialProviderButton: {
