@@ -7,6 +7,9 @@ import { UIButton, UITitle, UIView } from "@expense-app/ui"
 import { Eye, EyeOff, Github, Chrome } from '@tamagui/lucide-icons';
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Alert, ActivityIndicator } from 'react-native';
+import { supabase } from '@/src/utils/supabase';
+import { Session } from '@supabase/supabase-js'
 
 const loginSchema = z.object({
     email: z.string().min(1, {message: 'Email is required'}).email(),
@@ -36,8 +39,19 @@ const Login = () => {
         resolver: zodResolver(loginSchema)
     })
 
-    const onSubmit: SubmitHandler<LoginFormData> = ((values) => {
+    const onSubmit: SubmitHandler<LoginFormData> = (async (values) => {
         console.log('THE LOGIN VALUES', values);
+
+        const { email, password} = values;
+
+        const { error } = await supabase.auth.signInWithPassword({
+            email: email.toLowerCase(),
+            password
+        })
+
+        if (error) {
+           Alert.alert(error.message) 
+        }
     })
     
     return (
@@ -47,17 +61,17 @@ const Login = () => {
                     <UITitle isHeading>Log In</UITitle>
                 </Stack>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    <YStack space="$4">
+                    <YStack gap="$4">
                         <YStack>
                             <Label color={'$color.white'} fontSize={14}>Email</Label>
                             <Controller
                                 control={control}
                                 name="email"
                                 render={({ field}) => (
-                                    <Input 
-                                        id="login-email"
+                                    <Input
                                         size="$4"
                                         placeholder="Email Address"
+                                        placeholderTextColor={'$color.text'}
                                         value={field.value.toString()}
                                         onChangeText={field.onChange}
                                         borderRadius={4}
@@ -83,10 +97,10 @@ const Login = () => {
                                     name="password"
                                     render={({ field}) => (
                                         <Input
-                                            id="login-password"
                                             flex={1}
                                             size="$4"
                                             placeholder="Password"
+                                            placeholderTextColor={'$color.text'}
                                             value={field.value.toString()}
                                             onChangeText={field.onChange}
                                             secureTextEntry={!showPassword}
@@ -118,19 +132,19 @@ const Login = () => {
                             }}>Create Account</Paragraph>
                         </XStack>
 
-                        <Form.Trigger asChild disabled={!isValid || !isSubmitting}>
-                            <UIButton onPress={() => {
-                                console.log('Logging IN')
-                            }} marginVertical={'$5'}>
-                                {
-                                    isSubmitting ? 'Logging In...': 'Login'
-                                }
-                            </UIButton>
+                        <Form.Trigger asChild disabled={!isValid || isSubmitting}>
+                            <Stack>
+                                <UIButton defaultDark  size={'$4'} marginVertical={'0'} color={'$color.background'}>
+                                    <Paragraph>
+                                        { isSubmitting ? 'Logging In...': 'Login'}
+                                    </Paragraph>
+                                </UIButton>
+                            </Stack>
                         </Form.Trigger>
                     </YStack>
                 </Form>
                 
-                <YStack marginTop={'$-10'}>
+                <YStack marginTop={'$4'}>
                     <XStack>
                         <XStack flex={1} justifyContent='center' alignItems='center'>
                             <Separator borderWidth={1} borderColor={'$color.gray900'} />
