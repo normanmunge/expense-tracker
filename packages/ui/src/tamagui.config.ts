@@ -41,14 +41,18 @@ const tamaguiConfig = createTamagui({
   tokens,
   themes: {
     light: {
-      background: 'color.$background',
-      // color: '$background',
-      // primary: '$secondary',
+      background: tokens.color.background,
+      color: tokens.color.text,
+      primary: tokens.color.primary,
+      secondary: tokens.color.secondary,
+      gray900: tokens.color.gray900,
     },
     dark: {
-      background: 'color.$background',
-      // color: '$text',
-      // primary: '$primary'
+      background: tokens.color.background,
+      color: tokens.color.text,
+      primary: tokens.color.primary,
+      secondary: tokens.color.secondary,
+      gray900: tokens.color.gray900,
     },
   },
 });
