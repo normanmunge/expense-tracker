@@ -1,11 +1,15 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { tamaguiConfig } from '@expense-app/ui' 
-import { TamaguiProvider, YStack, Stack, Paragraph } from 'tamagui';
+import { TamaguiProvider, YStack } from 'tamagui';
 import ProtectedNavigation from './navigation/ProtectedNavigation';
 import AuthNavigation from './navigation/AuthNavigation';
 import { useColorScheme } from 'react-native';
+import { supabase } from '@/src/utils/supabase';
+import { Session } from '@supabase/supabase-js'
+
 
 // class ErrorBoundary extends React.Component {
 //   state = { hasError: false, error: null };
@@ -29,15 +33,34 @@ import { useColorScheme } from 'react-native';
 
 export default function App() {
   const colorScheme = useColorScheme();
+  const [session, setSession] = useState<Session | null>(null);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    const {data} = supabase.auth.onAuthStateChange(async (event, session) => {
+        console.log('auth session', event, session)
+        setSession(session)
+        setIsSignedIn(true)
+    })
+
+    return () => {
+        data.subscription.unsubscribe()
+    }
+  }, [])
 
   return (
     // <ErrorBoundary>
       <NavigationContainer>
-        <TamaguiProvider config={tamaguiConfig} defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} >
-          <StatusBar style="light" />
+        <TamaguiProvider 
+          config={tamaguiConfig} 
+          // defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} 
+          defaultTheme='dark'
+        >
+          <StatusBar style="auto" />
             <YStack flex={1} backgroundColor={'$background'}>
-              <AuthNavigation />
-              {/* <ProtectedNavigation /> */}
+              {
+                isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
+              }
             </YStack>
         </TamaguiProvider>
     </NavigationContainer>

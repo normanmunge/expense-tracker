@@ -17,27 +17,34 @@ const BottomTabs = createBottomTabNavigator()
 const ExpensesOverview = () => {
     const theme = useTheme()
 
+    console.log('THEME OBJECT:', {
+      background: theme?.background.val, // Access the raw value
+      secondary: theme.secondary?.val,
+      // Log other relevant theme values
+    })
+
+
     return (
       <BottomTabs.Navigator screenOptions={({navigation}) => ({
         headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: theme.background
+          backgroundColor: theme?.background.val
         },
-        headerTintColor: theme.primary,
+        headerTintColor: theme.secondary.val,
         headerTitleStyle: {
           fontWeight: 'bold'
         },
         tabBarStyle: {
-          backgroundColor: theme.background,
-          borderTopColor: theme.primary,
+          backgroundColor: theme?.background.val,
+          borderTopColor: theme.secondary.val,
           borderTopWidth: 1
         },
-        tabBarActiveTintColor: theme.primary,
-        tabBarInactiveTintColor: theme.gray900,
+        tabBarActiveTintColor: theme.secondary.val,
+        tabBarInactiveTintColor: theme.gray900.val,
         headerRight: ({tintColor}) => {
           return (
             <XStack 
-              bc={theme.primary} 
+              bc={'$color.secondary'} 
               w={'$3'} 
               h={'$3'} 
               br={'100%'} 
@@ -48,7 +55,7 @@ const ExpensesOverview = () => {
                <UIButton 
                 icon={Plus} 
                 size={'$9'} 
-                color={theme.primary.val} 
+                color={'$color.white'} 
                 iconify 
                 onPress={() => {
                   navigation.navigate('Manage Expense')
@@ -96,9 +103,9 @@ const ProtectedNavigation = () => {
       <Stack.Navigator screenOptions={{
           headerShadowVisible: false,
           headerStyle: {
-              backgroundColor: theme.background.val
+              backgroundColor: theme?.background.val
           },
-          headerTintColor: theme.primary.val,
+          headerTintColor: theme.secondary.val,
           headerTitleStyle: {
           fontWeight: 'bold'
           }
