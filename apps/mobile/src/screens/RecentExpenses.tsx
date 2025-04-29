@@ -7,6 +7,7 @@ import { transactions } from '../mock'
 import { formatCurrency } from '../utils/format-currency'
 import useExpenseStore from '../store/expenseStore';
 import AddExpense from '../components/AddExpense';
+import { UIButton } from '@expense-app/ui';
 
 type RootStackParamList = {
     'Manage Expense': { 
@@ -25,6 +26,9 @@ const RecentExpenses = () => {
             data: transactions.find(transaction => transaction.id === id)
         });
     }
+
+    console.log('THE EXPENSES', expenses);
+    
     return (
         <YStack>
             <YStack 
@@ -34,49 +38,52 @@ const RecentExpenses = () => {
                 alignItems="center"
                 borderBottomEndRadius={'$8'}
                 borderBottomStartRadius={'$8'}
-                bc={'$background'}
+                bc={'$color.background'}
             >
                 <YStack marginHorizontal={'$5'}>
-                    <Text color="#FFE81F" fontSize="$4" fontWeight="medium">Total Daily Expense</Text>
-                    <Text color="#fff" fontSize="$9" fontWeight="bold">Ksh {totalExpense()}</Text>
+                    <Text color={'$color.secondary'} fontSize="$4" fontWeight="medium">Total Daily Expense</Text>
+                    <Text color={'$color.white'} fontSize="$9" fontWeight="bold">Ksh {totalExpense().toFixed(2)}</Text>
                 </YStack>
             </YStack>
 
             <XStack justifyContent="space-between" alignItems="center" paddingHorizontal={'$4'} marginTop={'$4'}>
-                <Text fontSize="$5" color="#3F3F3F" fontWeight="bold">Recent Activity</Text>
-                <Button chromeless>
-                    <Text color="#575757" fontSize="$5" fontWeight="bold">View All</Text>
-                </Button>
+                <Text fontSize="$5" color={'$color.text'} fontWeight="bold">Recent Activity</Text>
+                
+                <Stack>
+                    <Text color={'$color.gray900'} fontSize="$5" fontWeight="bold">View All</Text>
+                </Stack>
             </XStack>
 
             <Card 
-                elevate
+                // elevate
                 bordered
-                marginHorizontal={'$4'} 
+                margin={'$4'} 
                 padding="$4" 
                 borderRadius="$4"
+                borderColor={'$color.gray900'}
+                backgroundColor={'transparent'}
             >
                 {
                     expenses && expenses.length ? (
                         <ScrollView>
                             {expenses.map((expense: Expense, index: number) => (
                                 <Stack key={expense.id}>
-                                    <Button justifyContent="space-between" chromeless onPress={() => expensePressHandler(expense.id)}>
+                                    <XStack justifyContent="space-between" onPress={() => expensePressHandler(expense.id)}>
                                         <YStack>
                                             <Text fontSize="$5" fontWeight="500">{expense.name}</Text>
-                                            <Text color="$gray11">{expense.paymentMethod}</Text>
+                                            <Text color="$color.gray900">{expense.paymentMethod}</Text>
                                         </YStack>
                                         <YStack alignItems="flex-end">
                                             <Text 
                                                 fontSize="$5" 
                                                 fontWeight="500" 
-                                                color={expense.amount > 0 ? '$green10' : '$red10'}
+                                                color={expense.amount > 0 ? '$color.success' : '$color.error'}
                                             >
                                                 {expense.amount > 0 ? '+' : ''}{formatCurrency(expense.amount)}
                                             </Text>
-                                            <Text color="$gray11">{expense.date}</Text>
+                                            <Text color="$color.gray900">{expense.date}</Text>
                                         </YStack>
-                                    </Button>
+                                    </XStack>
                                     {index < expenses.length - 1 && (
                                         <Separator marginVertical="$2" />
                                     )}
