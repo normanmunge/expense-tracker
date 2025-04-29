@@ -1,12 +1,13 @@
 import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
-import { Form, Label, Input, Button, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
+import { Form, Label, Input, XStack, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PaymentMethod, Expense } from "../types"
 import useExpenseStore from "../store/expenseStore"
+import { UIButton, UITitle, UIView, UIInput } from "@expense-app/ui"
 
 type ManageExpenseProps = {
     route?: {
@@ -100,30 +101,90 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                 minWidth={300}
                 borderWidth={1}
                 borderRadius={'$4'}
-                borderColor={'$borderColor'}
+                borderColor={'$color'}
                 padding={'$4'}
-                backgroundColor={'$background'}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                {/* <UiInput label="Name" size={'$4'} placeholder="Enter name" register={register} name="name" /> */}
-                <Label>Name</Label>
-                {/* <UiInput control={control} size={'$4'} placeholder="Enter name" register={register} name="name" /> */}
+
+                <UIInput<ExpenseFormData>
+                    control={control}
+                    name='name'
+                    label='Name'
+                    placeholder='Enter name'
+                    keyboardType='default'
+                    defaultValue={data?.name}
+                />
+
+                <UIInput<ExpenseFormData>
+                    control={control}
+                    name='amount'
+                    label='Amount'
+                    placeholder='Enter amount'
+                    keyboardType='number-pad'
+                    defaultValue={String(data?.amount)}
+                />
+
+                <UIInput<ExpenseFormData>
+                    control={control}
+                    name='category'
+                    label='Category'
+                    placeholder='Enter category'
+                    keyboardType='default'
+                    defaultValue={data?.category}
+                />
+
+                <UIInput<ExpenseFormData>
+                    control={control}
+                    name='date'
+                    label='Date'
+                    placeholder='YYYY--MM-DD'
+                    keyboardType='default'
+                    defaultValue={data?.date}
+                />
+
+                <Label px={'$4'} htmlFor='description'>Description</Label>
                 <Controller
+                    control={control}
+                    name="description"
+                    render={({ field }) => (
+                        <TextArea 
+                            placeholder="Enter description" 
+                            id="description" size={'$4'} 
+                            value={field.value}
+                            onChangeText={field.onChange}
+                            backgroundColor={'transparent'}
+                        />
+                    )}
+                />
+
+
+                
+                {/* <Label color={'$background'}>Name</Label>
+                <XStack borderRadius={4}
+                    borderWidth={1}
+                    borderColor={'$color.gray900'}
+                    backgroundColor={'$color.white'}
+                >
+                    <Controller
                     control={control}
                     name="name"
                     render={({ field }) => (
                         <Input
-                            id="name"
-                            size={'$4'}
+                            flex={1}
+                            size="$4"
                             placeholder="Enter name"
+                            placeholderTextColor={'$color.text'}
                             value={field.value.toString()}
                             onChangeText={field.onChange}
+                            color={'$color.background'}
+                            background={'$color.white'}
+                            borderWidth={0}
                         />
                     )}
                 />
+                </XStack>
                 {errors.name && <Paragraph color={'$error'}>{errors.name.message}</Paragraph>}
-
-                {/* <UiInput label="Amount" size={'$4'} placeholder="Enter amount" register={register} name="amount" /> */}
+                
                 <Label>Amount</Label>
                 <Controller
                     control={control}
@@ -142,7 +203,6 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
 
                 {errors.amount && <Paragraph color={'$error'}>{errors.amount.message}</Paragraph>}
 
-                {/* <UiInput label="Category" size={'$4'} placeholder="Enter category" register={register} name="category" /> */}
                 <Label>Category</Label>
                 <Controller
                     control={control}
@@ -160,7 +220,6 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
 
                 {errors.category && <Paragraph color={'$error'}>{errors.category.message}</Paragraph>}
 
-                {/* <UiInput label="Date" size={'$4'} placeholder="YYYY-MM-DD" register={register} name="date" /> */}
                 <Label>Date</Label>
                 <Controller
                     control={control}
@@ -190,15 +249,23 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                         />
                     )}
                 />
-                {errors.description && <Paragraph color={'$error'}>{errors.description.message}</Paragraph>}
+                {errors.description && <Paragraph color={'$error'}>{errors.description.message}</Paragraph>} */}
 
                 <Form.Trigger asChild disabled={!isValid || isSubmitting}>
-                    <Button icon={isSubmitting ? <Spinner /> : undefined}>
+                    {/* <Button icon={isSubmitting ? <Spinner /> : undefined}>
                         {isEditing 
                             ? (isSubmitting ? 'Updating...': 'Update' )
                             : (isSubmitting ? 'Adding...' : 'Add')
                         }
-                    </Button>
+                    </Button> */}
+                    <UIButton defaultDark  size={'$4'} marginVertical={'0'} color={'$color.background'}>
+                        <Paragraph>
+                        {isEditing 
+                            ? (isSubmitting ? 'Updating...': 'Update' )
+                            : (isSubmitting ? 'Adding...' : 'Add')
+                        }
+                        </Paragraph>
+                    </UIButton>
                 </Form.Trigger>
                 
             </Form>
