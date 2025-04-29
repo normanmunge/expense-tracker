@@ -128,3 +128,5 @@ android/
 .nx/
 
 .env
+
+.cursor
