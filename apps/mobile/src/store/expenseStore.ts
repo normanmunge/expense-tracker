@@ -8,7 +8,7 @@ export interface ExpenseState {
     addExpense: (expense: Expense) => void;
     deleteExpense: (expense: Expense) => void;
     updateExpense: (id: string, values: Omit<Expense, 'id'> ) => void;
-    totalExpense: () => string;
+    totalExpense: () => number;
 }
 
 const useExpenseStore = create<ExpenseState>()(
@@ -43,7 +43,7 @@ const useExpenseStore = create<ExpenseState>()(
                     })
                 }
         }),
-        totalExpense: () => get().expenses.reduce((acc, exp) => acc + exp.amount, 0).toFixed(2)
+        totalExpense: () => get().expenses.reduce((acc, exp) => acc + exp.amount, 0)
     }), {
         name: 'expense-app',
         storage: createJSONStorage(() => zustandStorage),
