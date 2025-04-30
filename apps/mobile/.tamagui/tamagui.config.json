@@ -27560,6 +27560,24 @@
         "secondary": "#FFE81F",
         "gray900": "#888888",
         "id": "dark_Text"
+      },
+      "light_Input": {
+        "background": "#000000",
+        "color": "#000000",
+        "primary": "#0056B3",
+        "secondary": "#FFE81F",
+        "gray900": "#888888",
+        "borderColor": "#000000",
+        "id": "light_Input"
+      },
+      "dark_Input": {
+        "background": "#000000",
+        "color": "#FFFFFF",
+        "primary": "#0056B3",
+        "secondary": "#FFE81F",
+        "gray900": "#888888",
+        "borderColor": "#888888",
+        "id": "dark_Input"
       }
     },
     "shorthands": {
