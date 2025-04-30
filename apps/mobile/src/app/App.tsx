@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { tamaguiConfig } from '@expense-app/ui' 
-import { TamaguiProvider, YStack } from 'tamagui';
+import { TamaguiProvider, Theme, YStack } from 'tamagui';
 import ProtectedNavigation from './navigation/ProtectedNavigation';
 import AuthNavigation from './navigation/AuthNavigation';
 import { useColorScheme } from 'react-native';
@@ -56,12 +56,14 @@ export default function App() {
           // defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} 
           defaultTheme='dark'
         >
-          <StatusBar style="auto" />
-            <YStack flex={1} backgroundColor={'$background'}>
-              {
-                isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
-              }
-            </YStack>
+          <StatusBar style="light" />
+          <Theme name='dark'>
+              <YStack flex={1} backgroundColor={'$background'}>
+                {
+                  isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
+                }
+              </YStack>
+          </Theme>
         </TamaguiProvider>
     </NavigationContainer>
     // </ErrorBoundary>
