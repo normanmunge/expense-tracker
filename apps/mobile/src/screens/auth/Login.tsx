@@ -40,8 +40,6 @@ const Login = () => {
     })
 
     const onSubmit: SubmitHandler<LoginFormData> = (async (values) => {
-        console.log('THE LOGIN VALUES', values);
-
         const { email, password} = values;
 
         const { error } = await supabase.auth.signInWithPassword({
@@ -63,79 +61,24 @@ const Login = () => {
                     </UIView.Heading>
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <YStack gap={16}>
-                        <UIInput<LoginFormData>
-                            control={control}
-                            name='email'
-                            label='Email'
-                            placeholder='Enter email'
-                            keyboardType='email-address'
-                            defaultValue={''}
-                        />
+                            <UIInput<LoginFormData>
+                                control={control}
+                                name='email'
+                                label='Email'
+                                placeholder='Email address'
+                                keyboardType='email-address'
+                                defaultValue={''}
+                            />
 
-                        <UIInput<LoginFormData>
-                            control={control}
-                            name='password'
-                            label='Password'
-                            placeholder='Enter password'
-                            keyboardType='default'
-                            secureTextEntry={showPassword}
-                            defaultValue={''}
-                        />
-                            {/* <YStack>
-                                <Label color={'$color.white'} fontSize={14}>Email</Label>
-                                <Controller
-                                    control={control}
-                                    name="email"
-                                    render={({ field}) => (
-                                        <Input
-                                            size="$4"
-                                            placeholder="Email Address"
-                                            placeholderTextColor={'$color.text'}
-                                            value={field.value.toString()}
-                                            onChangeText={field.onChange}
-                                            borderRadius={4}
-                                            borderWidth={1}
-                                            borderColor={'$color.gray900'}
-                                            backgroundColor={'$color.background'}
-                                            color={'$color.white'}
-                                        />
-                                    )}
-                                />
-                                {errors.email && <Text color={'$color.error'}>{errors.email.message}</Text>}
-                            </YStack> */}
-
-                            {/* <YStack>
-                                <Label color={'$color.white'} fontSize={14}>Password</Label>
-                                <XStack borderRadius={4}
-                                    borderWidth={1}
-                                    borderColor={'$color.gray900'}
-                                    backgroundColor={'$color.background'}
-                                >
-                                    <Controller
-                                        control={control}
-                                        name="password"
-                                        render={({ field}) => (
-                                            <Input
-                                                flex={1}
-                                                size="$4"
-                                                placeholder="Password"
-                                                placeholderTextColor={'$color.text'}
-                                                value={field.value.toString()}
-                                                onChangeText={field.onChange}
-                                                secureTextEntry={!showPassword}
-                                                color={'$color.white'}
-                                                backgroundColor={'$color.background'}
-                                                borderWidth={0}
-                                            />
-                                        )}
-                                    />
-                                    <UIButton outlined size='$sm' onPress={() => setShowPassword(!showPassword)}>
-                                        <UIButton.Icon icon={showPassword ? Eye : EyeOff} />
-                                    </UIButton>
-                                </XStack>
-                                {errors.password && <Paragraph color={'$color.error'}>{errors.password.message}</Paragraph>}
-                            </YStack> */}
-
+                            <UIInput<LoginFormData>
+                                control={control}
+                                name='password'
+                                label='Password'
+                                placeholder='Enter password'
+                                keyboardType='default'
+                                secureTextEntry={showPassword}
+                                defaultValue={''}
+                            />
                             <XStack justifyContent='space-between'>
                                 <Paragraph 
                                     color={'$color.secondary'}
