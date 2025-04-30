@@ -1,6 +1,65 @@
+import React from 'react'
 import { Control, Controller, Path, FieldValues} from 'react-hook-form'
-import { Input, Text, YStack } from 'tamagui'
+import { 
+    ButtonIcon, 
+    ColorTokens, 
+    createStyledContext, 
+    GetProps, 
+    Input, 
+    SizeTokens, 
+    styled, 
+    Text, 
+    withStaticProperties, 
+    YStack 
+} from 'tamagui'
 
+
+export const InputContext = createStyledContext({
+    size: '$md' as SizeTokens,
+    color: '$color' as ColorTokens
+})
+
+export const InputFrame = styled(Input, {
+    name: 'Input',
+    context: InputContext,
+    backgroundColor: 'transparent',
+    color: '$color',
+    borderRadius: '$sm',
+    borderWidth: 1,
+    borderColor: '$borderColor',
+    paddingHorizontal: '$3',
+    focusStyle: {
+        borderColor: '$primary',
+        borderWidth: 2,
+        outlineWidth: 2,
+        outlineColor: '$primary',
+        outlineStyle: 'solid'
+    }
+})
+
+type InputFrameProps = GetProps<typeof Input>
+
+const Label = styled(Text, {
+    name: 'Label',
+    context: InputContext,
+    color: '$color',
+    fontSize: 14,
+    paddingVertical: 8,
+})
+
+type LabelProps = GetProps<typeof Label> & {
+    children: React.ReactNode
+}
+
+export const InputLabel = ({ children, ...props }: LabelProps) => {
+    return <Label {...props}>{children}</Label>
+}
+
+const CustomInput = withStaticProperties(InputFrame, {
+    Props: InputContext.Provider,
+    Label: InputLabel,
+    Icon: ButtonIcon
+})
 
 type FormInputProps<T extends FieldValues> = {
     control: Control<T>
@@ -27,9 +86,10 @@ const UIInput = <T extends FieldValues>({
 }: FormInputProps<T>) => {
     return (
         <YStack>
+            
             {
                 label && (
-                    <Text>{label}</Text>
+                    <CustomInput.Label>{label}</CustomInput.Label>
                 )
             }
         
@@ -42,7 +102,7 @@ const UIInput = <T extends FieldValues>({
                     fieldState: { error }
                 }) => (
                     <YStack>
-                         <Input 
+                        <CustomInput 
                             value={value}
                             onChangeText={onChange}
                             onBlur={onBlur}
@@ -52,26 +112,10 @@ const UIInput = <T extends FieldValues>({
                             keyboardType={keyboardType}
                             disabled={disabled}
                             autoFocus={true}
-                            focusable={true}
                             tabIndex={0}
-                            backgroundColor={'transparent'}
-                            borderColor={error ? '$error' : '$gray900'}
-                            focusStyle={{
-                                borderColor: error ? '$error': '$primary',
-                                borderWidth: 2,
-                                outlineWidth: 2,
-                                outlineColor: '$primary',
-                                outlineStyle: 'solid'
-                            }}
-                            paddingHorizontal={'$3'}
-                            size={'$4'}
-                            borderWidth={1}
-                            borderRadius={'$4'}
-                            color={'$text'}
-                            placeholderTextColor={'$gray500'}
                         />
                         { error && (
-                            <Text color='$error' fontSize={'$2'} mt='$1'>
+                            <Text color='$error' fontSize={14} mt={4}>
                                 {error.message}
                             </Text>
                         )}

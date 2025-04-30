@@ -85,6 +85,14 @@ const tamaguiConfig = createTamagui({
     },
     dark_Text: {
       color: tokens.color.white
+    },
+    light_Input: {
+      color: tokens.color.background,
+      borderColor: tokens.color.background
+    },
+    dark_Input: {
+      color: tokens.color.white,
+      borderColor: tokens.color.gray900
     }
   },
   fonts: {
