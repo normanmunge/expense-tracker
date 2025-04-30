@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { UITitle, UIView, UIButton } from "@expense-app/ui";
-import { Stack, XStack, Paragraph, YStack, Form, Label, Input } from "tamagui";
+import { UIView, UIButton, UIInput } from "@expense-app/ui";
+import { Stack, XStack, Text, YStack, Form } from "tamagui";
 import { useNavigation } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Alert } from "react-native";
-import { Eye, EyeOff } from '@tamagui/lucide-icons';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form'
+import { useForm,  SubmitHandler } from 'react-hook-form'
 import { z } from "zod"
 import { zodResolver } from '@hookform/resolvers/zod';
 import { supabase } from '@/src/utils/supabase';
 
 const loginSchema = z.object({
+    first_name: z.string().min(1, {message: 'First name is required'}),
+    last_name: z.string().min(1, {message: 'Last name is required'}),
     email: z.string().min(1, {message: 'Email is required'}).email(),
     password: z.string().min(1, {message: 'Password is required'})
 })
@@ -23,7 +24,7 @@ type AuthStackParamList = {
 };
 
 const Signup = () => {
-    const [showPassword, setShowPassword] = useState<boolean>(false);
+    const [showPassword, setShowPassword] = useState<boolean>(true);
 
     const navigation = useNavigation<NativeStackNavigationProp<AuthStackParamList>>()
 
@@ -61,97 +62,74 @@ const Signup = () => {
     })
 
     return (
-        <UIView isAuthBackgroundContainer>
-            <YStack>
-                <Stack marginBottom={'$5'}>
-                    <UITitle isHeading>Sign Up</UITitle>
-                </Stack>
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Stack gap={'$4'}>
-                        <YStack>
-                            <Label color={'$color.white'} fontSize={14}>Email</Label>
-                            <Controller
+        <UIView.Props>
+            <UIView fullPage>
+                <UIView.Content>
+                    <UIView.Heading size='lg'>
+                        Sign Up
+                    </UIView.Heading>
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <YStack gap={16}>
+                            <UIInput<SignupFormData>
                                 control={control}
-                                name="email"
-                                render={({ field}) => (
-                                    <Input
-                                        size="$4"
-                                        placeholder="Email Address"
-                                        placeholderTextColor={'$color.text'}
-                                        value={field.value.toString()}
-                                        onChangeText={field.onChange}
-                                        borderRadius={4}
-                                        borderWidth={1}
-                                        borderColor={'$color.gray900'}
-                                        backgroundColor={'$color.background'}
-                                        color={'$color.white'}
-                                    />
-                                )}
+                                name='first_name'
+                                label='First Name'
+                                placeholder='First name'
+                                keyboardType='default'
+                                defaultValue={''}
                             />
-                            {errors.email && <Paragraph color={'$color.error'}>{errors.email.message}</Paragraph>}
-                        </YStack>
 
-                        <YStack>
-                            <Label color={'$color.white'} fontSize={14}>Password</Label>
-                            <XStack borderRadius={4}
-                                borderWidth={1}
-                                borderColor={'$color.gray900'}
-                                backgroundColor={'$color.background'}
-                            >
-                                <Controller
-                                    control={control}
-                                    name="password"
-                                    render={({ field}) => (
-                                        <Input
-                                            flex={1}
-                                            size="$4"
-                                            placeholder="Password"
-                                            placeholderTextColor={'$color.text'}
-                                            value={field.value.toString()}
-                                            onChangeText={field.onChange}
-                                            secureTextEntry={!showPassword}
-                                            color={'$color.white'}
-                                            backgroundColor={'$color.background'}
-                                            borderWidth={0}
-                                        />
-                                    )}
-                                />
-                                <UIButton
-                                    iconify
-                                    backgroundColor={'$color.background'}
+                            <UIInput<SignupFormData>
+                                control={control}
+                                name='last_name'
+                                label='Last Name'
+                                placeholder='Last name'
+                                keyboardType='default'
+                                defaultValue={''}
+                            />
+
+                            <UIInput<SignupFormData>
+                                control={control}
+                                name='email'
+                                label='Email'
+                                placeholder='Email address'
+                                keyboardType='email-address'
+                                defaultValue={''}
+                            />
+
+                            <UIInput<SignupFormData>
+                                control={control}
+                                name='password'
+                                label='Password'
+                                placeholder='Enter password'
+                                keyboardType='default'
+                                secureTextEntry={showPassword}
+                                defaultValue={''}
+                            />
+
+                            <XStack justifyContent='flex-start'>
+                                <Text 
                                     color={'$color.white'}
-                                    size={'$4'}
-                                    marginRight={'$4'}
-                                    icon={showPassword ? EyeOff : Eye}
-                                    onPress={() => setShowPassword(!showPassword)}
-                                />
+                                >Already have an account?</Text>
+                                <Text color={'$color.secondary'} pl={4} onPress={() => {
+                                    navigation.navigate('login')
+                                }}>Login</Text>
                             </XStack>
-                            {errors.password && <Paragraph color={'$color.error'}>{errors.password.message}</Paragraph>}
+
+                            <Form.Trigger asChild disabled={!isValid || isSubmitting}>
+                                <Stack>
+                                    <UIButton size={'$md'} onPress={handleSubmit(onSubmit)}>
+                                        <UIButton.Text>
+                                            { isSubmitting ? 'Signing Up...': 'Signup'}
+                                        </UIButton.Text>
+                                    </UIButton>
+                                </Stack>
+                            </Form.Trigger>
                         </YStack>
-                        <XStack justifyContent='flex-start'>
-                            <Paragraph color={'$color.white'} onPress={() => {
-                                navigation.navigate('login')
-                            }}>Already have an account?
-                                <UITitle isDefault paddingLeft={'$2'} color='$color.secondary'>Login</UITitle>
-                            </Paragraph>
-                            
-                        </XStack>
-                        <Form.Trigger asChild disabled={!isValid || isSubmitting}>
-                            <UIButton
-                                defaultDark
-                                size={'$4'}
-                            >
-                                {
-                                    <Paragraph>
-                                        { isSubmitting ? 'Signing Up...': 'Signup'}
-                                    </Paragraph>
-                                }
-                            </UIButton>
-                        </Form.Trigger>
-                    </Stack>
                 </Form>
-            </YStack>
-        </UIView>
+                </UIView.Content>
+            </UIView>
+        </UIView.Props>
     )
 }
 
