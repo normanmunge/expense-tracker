@@ -1,6 +1,7 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
-import { zustandStorage } from './mmkv';
+//import { zustandStorage } from './mmkv';
 import { Expense } from '../types';
 
 export interface ExpenseState {
@@ -46,7 +47,8 @@ const useExpenseStore = create<ExpenseState>()(
         totalExpense: () => get().expenses.reduce((acc, exp) => acc + exp.amount, 0)
     }), {
         name: 'expense-app',
-        storage: createJSONStorage(() => zustandStorage),
+        //storage: createJSONStorage(() => zustandStorage),
+        storage: createJSONStorage(() => AsyncStorage),
     })
 )
 
