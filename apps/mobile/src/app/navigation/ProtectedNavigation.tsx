@@ -43,25 +43,11 @@ const ExpensesOverview = () => {
         tabBarInactiveTintColor: theme.gray900.val,
         headerRight: ({tintColor}) => {
           return (
-            <XStack 
-              bc={'$color.secondary'} 
-              w={'$3'} 
-              h={'$3'} 
-              br={'100%'} 
-              justifyContent="center"
-              alignItems="center"
-              marginRight={'$4'}
-            >
-               <UIButton 
-                icon={Plus} 
-                size={'$9'} 
-                color={'$color.white'} 
-                iconify 
-                onPress={() => {
-                  navigation.navigate('Manage Expense')
-                }}
-            />
-            </XStack>
+              <UIButton rounded onPress={() => {
+                navigation.navigate('Manage Expense')
+              }}>
+                <UIButton.Icon icon={Plus} color={'$color.white'} />
+              </UIButton>
           )
         }
       })}>
@@ -71,7 +57,8 @@ const ExpensesOverview = () => {
             options={{
               tabBarIcon: ({color, size}) => (
                 <Ionicons name="home-outline" size={size} color={color} />
-              )
+              ),
+              headerTitle: ''
             }}
           />
           <BottomTabs.Screen
