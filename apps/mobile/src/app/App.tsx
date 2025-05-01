@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
@@ -6,7 +6,7 @@ import { tamaguiConfig } from '@expense-app/ui'
 import { TamaguiProvider, Theme, YStack } from 'tamagui';
 import ProtectedNavigation from './navigation/ProtectedNavigation';
 import AuthNavigation from './navigation/AuthNavigation';
-import { useColorScheme } from 'react-native';
+import { ActivityIndicator, useColorScheme } from 'react-native';
 import { supabase } from '@/src/utils/supabase';
 import { Session } from '@supabase/supabase-js'
 
@@ -57,13 +57,15 @@ export default function App() {
           defaultTheme='dark'
         >
           <StatusBar style="light" />
-          <Theme name='dark'>
-              <YStack flex={1} backgroundColor={'$background'}>
-                {
-                  isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
-                }
-              </YStack>
-          </Theme>
+          <Suspense fallback={<ActivityIndicator />}>
+            <Theme name='dark'>
+                <YStack flex={1} backgroundColor={'$background'}>
+                  {
+                    isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
+                  }
+                </YStack>
+            </Theme>
+          </Suspense>
         </TamaguiProvider>
     </NavigationContainer>
     // </ErrorBoundary>
