@@ -48,3 +48,9 @@ export const DUMMYEXPENSES = [
         mode: 'Mpesa'
     }
 ]
+
+export const DUMMYCATEGORIES = [
+    { id: 'coffee', label: 'Coffee', value: 'Coffee' },
+    { id: 'snacks', label: 'Snacks', value: 'Snacks' },
+    { id: 'tickets', label: 'Tickets', value: 'Tickets' }
+]
