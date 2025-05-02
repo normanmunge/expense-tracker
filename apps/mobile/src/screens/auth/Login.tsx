@@ -68,6 +68,9 @@ const Login = () => {
                                 placeholder='Email address'
                                 keyboardType='email-address'
                                 defaultValue={''}
+                                isDefault
+                                color={'$color.text'}
+                                autoFocus={true}
                             />
 
                             <UIInput<LoginFormData>
@@ -78,14 +81,16 @@ const Login = () => {
                                 keyboardType='default'
                                 secureTextEntry={showPassword}
                                 defaultValue={''}
+                                isDefault
+                                color={'$color.text'}
                             />
                             <XStack justifyContent='space-between'>
                                 <Paragraph 
-                                    color={'$color.secondary'}
+                                    color={'$color.text'}
                                 >Forgot Password?</Paragraph>
-                                <Paragraph color={'$color.white'} onPress={() => {
+                                <Paragraph color={'$color.accent'} fontWeight='bold' onPress={() => {
                                     navigation.navigate('signup')
-                                }}>Create Account</Paragraph>
+                                }}>Don't have an account?</Paragraph>
                             </XStack>
 
                             <Form.Trigger asChild disabled={!isValid || isSubmitting}>
@@ -104,7 +109,7 @@ const Login = () => {
                         <XStack>
                             <XStack flex={1} justifyContent='center' alignItems='center'>
                                 <Separator borderWidth={1} borderColor={'$color.gray900'} />
-                                    <Text color={'$color.white'} paddingHorizontal={10} >OR</Text>
+                                    <Text color={'$color.text'} paddingHorizontal={10} >OR</Text>
                                 <Separator borderWidth={1} borderColor={'$color.gray900'} />
                             </XStack>
                         </XStack>

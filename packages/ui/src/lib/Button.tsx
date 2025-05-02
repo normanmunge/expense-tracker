@@ -55,7 +55,7 @@ export const ButtonFrame = styled(Stack, {
         },
         solid: {
             true: {
-                backgroundColor: '$primary',
+                backgroundColor: '$accent',
                 color: '$color.white'
             }
         },
@@ -64,12 +64,23 @@ export const ButtonFrame = styled(Stack, {
             outlineColor:'$gray900',
         },
         rounded: {
-            br: '100%',
-            bc: '$primary',
-            color: '$color',
-            size: '$9',
-            w: '$9',
-            h: '$9',
+            true: {
+                br: '100%',
+                bc: '$primary',
+                color: '$color',
+                w: 36,
+                h: 36,
+                margin: 16
+            }
+        },
+        cardIcon: {
+            true: {
+                bc: '$primary',
+                color: '$accent',
+                w: 60,
+                h: 60,
+                elevation: 6
+            }
         }
     } as const,
     defaultVariants: {
@@ -110,7 +121,7 @@ export const ButtonText = ({ children, ...props }: ButtonTextProps) => {
     return <StyledButtonText {...props}>{children}</StyledButtonText>;
 }
 
-const ButtonIcon = (props: { icon: React.ComponentType<any>, color?: string }) => {
+export const ButtonIcon = (props: { icon: React.ComponentType<any>, color?: string }) => {
     
     const { size } = useContext(ButtonContext)
     const smallerSize = Number(getSize(size)) * 0.2

@@ -17,36 +17,29 @@ const BottomTabs = createBottomTabNavigator()
 const ExpensesOverview = () => {
     const theme = useTheme()
 
-    console.log('THEME OBJECT:', {
-      background: theme?.background.val, // Access the raw value
-      secondary: theme.secondary?.val,
-      // Log other relevant theme values
-    })
-
-
     return (
       <BottomTabs.Navigator screenOptions={({navigation}) => ({
         headerShadowVisible: false,
         headerStyle: {
-          backgroundColor: theme?.background.val
+          backgroundColor: theme?.accent.val
         },
         headerTintColor: theme.secondary.val,
         headerTitleStyle: {
           fontWeight: 'bold'
         },
         tabBarStyle: {
-          backgroundColor: theme?.background.val,
-          borderTopColor: theme.secondary.val,
+          backgroundColor: theme?.accent.val,
+          borderTopColor: theme.accent.val,
           borderTopWidth: 1
         },
-        tabBarActiveTintColor: theme.secondary.val,
+        tabBarActiveTintColor: theme.primary.val,
         tabBarInactiveTintColor: theme.gray900.val,
         headerRight: ({tintColor}) => {
           return (
               <UIButton rounded onPress={() => {
                 navigation.navigate('Manage Expense')
               }}>
-                <UIButton.Icon icon={Plus} color={'$color.white'} />
+                <UIButton.Icon icon={Plus} color={'$color.accent'} />
               </UIButton>
           )
         }
@@ -94,21 +87,24 @@ const ProtectedNavigation = () => {
           },
           headerTintColor: theme.secondary.val,
           headerTitleStyle: {
-          fontWeight: 'bold'
+            fontWeight: 'bold'
           }
       }}>
           <Stack.Screen 
               name="ExpensesOverview" 
               component={ExpensesOverview}
               options={{
-              headerShown: false
+                headerShown: false
               }}
           />
           <Stack.Screen 
               name="Manage Expense" 
               component={ManageExpense} 
               options={{
-              presentation: 'modal'
+                headerStyle: {
+                  
+                  backgroundColor: theme?.background.val
+                }
               }}
           />
       </Stack.Navigator>

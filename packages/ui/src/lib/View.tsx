@@ -29,7 +29,8 @@ export const ViewFrame = styled(YStack, {
     variants: {
         variant: {
             default: {
-                backgroundColor: '$background'
+                backgroundColor: '$background',
+                flex: 1,
             },
             card: {
                 backgroundColor: '$background',
@@ -88,7 +89,6 @@ export const ViewFrame = styled(YStack, {
     defaultVariants: {
         variant: 'default',
         size: 'medium',
-        elevation: 'sm',
         fullPage: false,
     },
 })
@@ -141,6 +141,24 @@ const Content = styled(YStack, {
         }
     }
 });
+
+const ContentText = styled(Text, {
+    name: 'Text',
+    context: ViewContext,
+    variants: {
+      size: {
+        sm: {
+          fontSize: '$4',
+        },
+        md: {
+          fontSize: '$6',
+        },
+        lg: {
+          fontSize: 36,
+        },
+      },
+    },
+});
   
 const Footer = styled(XStack, {
     name: 'Footer',
@@ -153,10 +171,29 @@ const Footer = styled(XStack, {
     borderTopColor: '$borderColor',
 });
 
+type ViewContentProps = GetProps<typeof Content> & {
+    children: React.ReactNode;
+}
+
+export const ViewContent = ({ children, ...props }: ViewContentProps) => {
+    console.log('props in view content', props)
+    return <Content backgroundColor={props.backgroundColor} {...props}>{children}</Content>;
+}
+
+type ViewTextProps = GetProps<typeof ContentText> & {
+    children: React.ReactNode;
+}
+
+export const ViewText = ({ children, ...props }: ViewTextProps) => {
+    console.log('children in view text', children)
+    return <ContentText {...props}>{children}</ContentText>;
+}
+
 export const UIView = withStaticProperties(ViewFrame, {
     Props: ViewContext.Provider,
     Header: Header,
     Heading: Heading,
-    Content: Content,
+    Content: ViewContent,
     Footer: Footer,
+    Text: ViewText,
 })

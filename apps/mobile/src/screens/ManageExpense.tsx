@@ -1,13 +1,14 @@
 import { FunctionComponent } from "react"
 import { NativeStackNavigationProp } from "@react-navigation/native-stack"
 import { useLayoutEffect } from "react"
-import { Form, Label, Input, XStack, Paragraph, Spinner, TextArea, ScrollView } from "tamagui"
+import { Form, Label, Input, XStack, Paragraph, Spinner, TextArea, ScrollView, Theme } from "tamagui"
 import { useForm, Controller, SubmitHandler } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PaymentMethod, Expense } from "../types"
 import useExpenseStore from "../store/expenseStore"
 import { UIButton, UITitle, UIView, UIInput } from "@expense-app/ui"
+import { DUMMYCATEGORIES } from "../constants/mock"
 
 type ManageExpenseProps = {
     route?: {
@@ -37,6 +38,8 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     const expenseId = route?.params?.expenseId;
     const isEditing = !!expenseId
     const { updateExpense, addExpense } = useExpenseStore()
+
+    console.log('THE DATA IS: data', data)
 
     const { 
         control, 
@@ -71,6 +74,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     }
 
     const onSubmit: SubmitHandler<ExpenseFormData> = ((values) => {
+        console.log('values', values)
         if (isEditing) {
             const data = {
                 ...values,
@@ -94,15 +98,17 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     })
 
     return (
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ 
+            flex: 1,
+            justifyContent: 'center',
+        }}>
             <Form 
-                mx={'$4'}
-                gap={'$2'}
-                minWidth={300}
-                borderWidth={1}
-                borderRadius={'$4'}
-                borderColor={'$color'}
-                padding={'$4'}
+                marginHorizontal={16}
+                gap={8}
+                padding={16}
+                justifyContent='center'
+                alignContent='center'
+                // backgroundColor={'transparent'}
                 onSubmit={handleSubmit(onSubmit)}
             >
 
@@ -113,6 +119,8 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     placeholder='Enter name'
                     keyboardType='default'
                     defaultValue={data?.name}
+                    isDefault
+                    autoFocus={true}
                 />
 
                 <UIInput<ExpenseFormData>
@@ -122,6 +130,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     placeholder='Enter amount'
                     keyboardType='number-pad'
                     defaultValue={String(data?.amount)}
+                    isDefault
                 />
 
                 <UIInput<ExpenseFormData>
@@ -131,7 +140,12 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     placeholder='Enter category'
                     keyboardType='default'
                     defaultValue={data?.category}
+                    isSelectInput={true}
+                    selectOptions={DUMMYCATEGORIES}
+                    selectPlaceholder='Select category'
                 />
+
+                
 
                 <UIInput<ExpenseFormData>
                     control={control}
@@ -142,7 +156,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     defaultValue={data?.date}
                 />
 
-                <Label px={'$4'} htmlFor='description'>Description</Label>
+                {/* <Label fontSize={14} color={'$color.background'}>Description</Label>
                 <Controller
                     control={control}
                     name="description"
@@ -155,116 +169,25 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                             backgroundColor={'transparent'}
                         />
                     )}
-                />
+                /> */}
 
-
-                
-                {/* <Label color={'$background'}>Name</Label>
-                <XStack borderRadius={4}
-                    borderWidth={1}
-                    borderColor={'$color.gray900'}
-                    backgroundColor={'$color.white'}
-                >
-                    <Controller
+                <UIInput<ExpenseFormData>
                     control={control}
-                    name="name"
-                    render={({ field }) => (
-                        <Input
-                            flex={1}
-                            size="$4"
-                            placeholder="Enter name"
-                            placeholderTextColor={'$color.text'}
-                            value={field.value.toString()}
-                            onChangeText={field.onChange}
-                            color={'$color.background'}
-                            background={'$color.white'}
-                            borderWidth={0}
-                        />
-                    )}
-                />
-                </XStack>
-                {errors.name && <Paragraph color={'$error'}>{errors.name.message}</Paragraph>}
-                
-                <Label>Amount</Label>
-                <Controller
-                    control={control}
-                    name="amount"
-                    render={({ field }) => (
-                        <Input
-                            id="amount"
-                            size={'$4'}
-                            placeholder="Enter amount"
-                            value={String(field.value)}
-                            onChangeText={field.onChange}
-                        />
-                    )}
+                    name='description'
+                    label='Description'
+                    placeholder='Enter description'
+                    isTextArea={true}
+                    defaultValue={data?.description}
                 />
 
-
-                {errors.amount && <Paragraph color={'$error'}>{errors.amount.message}</Paragraph>}
-
-                <Label>Category</Label>
-                <Controller
-                    control={control}
-                    name="category"
-                    render={({ field }) => (
-                        <Input
-                            id="category"
-                            size={'$4'}
-                            placeholder="Enter category"
-                            value={field.value}
-                            onChangeText={field.onChange}
-                        />
-                    )}
-                />
-
-                {errors.category && <Paragraph color={'$error'}>{errors.category.message}</Paragraph>}
-
-                <Label>Date</Label>
-                <Controller
-                    control={control}
-                    name="date"
-                    render={({ field }) => (
-                        <Input
-                            id="date"
-                            size={'$4'}
-                            placeholder="YYYY-MM-DD"
-                            value={field.value}
-                            onChangeText={field.onChange}
-                        />
-                    )}
-                />
-                {errors.date && <Paragraph color={'$error'}>{errors.date.message}</Paragraph>}
-
-                <Label px={'$4'} htmlFor='description'>Description</Label>
-                <Controller
-                    control={control}
-                    name="description"
-                    render={({ field }) => (
-                        <TextArea 
-                            placeholder="Enter description" 
-                            id="description" size={'$4'} 
-                            value={field.value}
-                            onChangeText={field.onChange}
-                        />
-                    )}
-                />
-                {errors.description && <Paragraph color={'$error'}>{errors.description.message}</Paragraph>} */}
-
-                <Form.Trigger asChild disabled={!isValid || isSubmitting}>
-                    {/* <Button icon={isSubmitting ? <Spinner /> : undefined}>
-                        {isEditing 
-                            ? (isSubmitting ? 'Updating...': 'Update' )
-                            : (isSubmitting ? 'Adding...' : 'Add')
-                        }
-                    </Button> */}
-                    <UIButton defaultDark  size={'$4'} marginVertical={'0'} color={'$color.background'}>
-                        <Paragraph>
-                        {isEditing 
-                            ? (isSubmitting ? 'Updating...': 'Update' )
-                            : (isSubmitting ? 'Adding...' : 'Add')
-                        }
-                        </Paragraph>
+                <Form.Trigger asChild disabled={!isValid || isSubmitting} marginTop={16}>
+                    <UIButton size={'$md'} backgroundColor={'$color.accent'}>
+                        <UIButton.Text color={'$color.white'}>
+                            {isEditing 
+                                ? (isSubmitting ? 'Updating...': 'Update' )
+                                : (isSubmitting ? 'Adding...' : 'Add')
+                            }
+                        </UIButton.Text>
                     </UIButton>
                 </Form.Trigger>
                 

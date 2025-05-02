@@ -77,6 +77,8 @@ const Signup = () => {
                                 placeholder='First name'
                                 keyboardType='default'
                                 defaultValue={''}
+                                isDefault
+                                autoFocus={true}
                             />
 
                             <UIInput<SignupFormData>
@@ -86,6 +88,7 @@ const Signup = () => {
                                 placeholder='Last name'
                                 keyboardType='default'
                                 defaultValue={''}
+                                isDefault
                             />
 
                             <UIInput<SignupFormData>
@@ -95,6 +98,7 @@ const Signup = () => {
                                 placeholder='Email address'
                                 keyboardType='email-address'
                                 defaultValue={''}
+                                isDefault
                             />
 
                             <UIInput<SignupFormData>
@@ -105,13 +109,14 @@ const Signup = () => {
                                 keyboardType='default'
                                 secureTextEntry={showPassword}
                                 defaultValue={''}
+                                isDefault
                             />
 
                             <XStack justifyContent='flex-start'>
                                 <Text 
-                                    color={'$color.white'}
+                                    color={'$color.text'}
                                 >Already have an account?</Text>
-                                <Text color={'$color.secondary'} pl={4} onPress={() => {
+                                <Text color={'$color.accent'} pl={4} fontWeight='bold' onPress={() => {
                                     navigation.navigate('login')
                                 }}>Login</Text>
                             </XStack>

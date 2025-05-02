@@ -53,15 +53,16 @@ type ListProps = {
 
 const ExpensesList: FunctionComponent<ListProps> = ({expenses }) => {
     return (
-        // <Card>
-            <FlatList 
-                data={expenses} 
-                renderItem={({ item }: {item: Expense}) => (
-                    <ExpenseItem {...item} />
-                )} 
-                keyExtractor={(item) => item.id }
-            />
-        {/* </Card> */}
+        <Stack></Stack>
+        // // <Card>
+        //     // <FlatList 
+        //     //     data={expenses} 
+        //     //     renderItem={({ item }: {item: Expense}) => (
+        //     //         <ExpenseItem {...item} />
+        //     //     )} 
+        //     //     keyExtractor={(item) => item.id }
+        //     // />
+        // {/* </Card> */}
     )
 }
 
