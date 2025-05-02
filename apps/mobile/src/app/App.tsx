@@ -9,6 +9,7 @@ import AuthNavigation from './navigation/AuthNavigation';
 import { ActivityIndicator, useColorScheme } from 'react-native';
 import { supabase } from '@/src/utils/supabase';
 import { Session } from '@supabase/supabase-js'
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 // class ErrorBoundary extends React.Component {
@@ -50,24 +51,26 @@ export default function App() {
 
   return (
     // <ErrorBoundary>
+    <Suspense fallback={<ActivityIndicator />}>
       <NavigationContainer>
         <TamaguiProvider 
           config={tamaguiConfig} 
-          // defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} 
-          defaultTheme='dark'
+          defaultTheme={colorScheme === 'dark' ? 'dark': 'light'} 
+          //defaultTheme='dark'
         >
-          <StatusBar style="light" />
-          <Suspense fallback={<ActivityIndicator />}>
-            <Theme name='dark'>
-                <YStack flex={1} backgroundColor={'$background'}>
-                  {
-                    isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
-                  }
-                </YStack>
-            </Theme>
-          </Suspense>
+          <SafeAreaProvider>
+            <StatusBar style="light" />
+              <Theme name='dark'>
+                  <YStack flex={1} backgroundColor={'$background'}>
+                    {
+                      isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
+                    }
+                  </YStack>
+              </Theme>
+          </SafeAreaProvider>
         </TamaguiProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </Suspense>
     // </ErrorBoundary>
   )
 }
