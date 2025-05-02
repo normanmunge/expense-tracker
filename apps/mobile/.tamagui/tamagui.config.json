@@ -27453,6 +27453,102 @@
           "16": 134,
           "true": 14
         }
+      },
+      "poppins": {
+        "family": "Poppins",
+        "size": {
+          "1": 12,
+          "2": 14,
+          "3": 16,
+          "4": 18,
+          "5": 20,
+          "6": 24,
+          "7": 28,
+          "8": 32,
+          "9": 36,
+          "10": 40,
+          "11": 48,
+          "12": 56,
+          "13": 64,
+          "14": 72
+        },
+        "lineHeight": {
+          "1": 16,
+          "2": 20,
+          "3": 24,
+          "4": 28,
+          "5": 30,
+          "6": 36,
+          "7": 40,
+          "8": 44,
+          "9": 52,
+          "10": 56,
+          "11": 64,
+          "12": 72,
+          "13": 80,
+          "14": 88
+        },
+        "weight": {
+          "1": "400",
+          "2": "400",
+          "3": "400",
+          "4": "400",
+          "5": "500",
+          "6": "600",
+          "7": "700",
+          "8": "700",
+          "9": "700",
+          "10": "700",
+          "11": "700",
+          "12": "700",
+          "13": "700",
+          "14": "700"
+        },
+        "letterSpacing": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": -1,
+          "7": -1,
+          "8": -2,
+          "9": -3,
+          "10": -4,
+          "11": -4,
+          "12": -4,
+          "13": -4,
+          "14": -4
+        },
+        "face": {
+          "100": {
+            "normal": "Poppins"
+          },
+          "200": {
+            "normal": "Poppins"
+          },
+          "300": {
+            "normal": "Poppins"
+          },
+          "400": {
+            "normal": "Poppins-Regular"
+          },
+          "500": {
+            "normal": "Poppins-Medium"
+          },
+          "600": {
+            "normal": "Poppins-SemiBold"
+          },
+          "700": {
+            "normal": "Poppins-Bold"
+          },
+          "800": {
+            "normal": "Poppins-Bold"
+          },
+          "900": {
+            "normal": "Poppins-Bold"
+          }
+        }
       }
     },
     "onlyAllowShorthands": false,
@@ -27512,72 +27608,100 @@
     },
     "themes": {
       "light": {
-        "background": "#000000",
-        "color": "#000000",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#FBFBFC",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
+        "accent": "#5350B2",
         "id": "light"
       },
       "dark": {
-        "background": "#000000",
-        "color": "#FFFFFF",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#FBFBFC",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
+        "accent": "#5350B2",
         "id": "dark"
       },
       "light_Button": {
-        "background": "#000000",
-        "color": "#FFFFFF",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#5350B2",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
-        "backgroundPress": "#000000",
+        "accent": "#5350B2",
+        "backgroundPress": "[object Object]DD",
         "id": "light_Button"
       },
       "dark_Button": {
-        "background": "#FFFFFF",
-        "color": "#000000",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#5350B2",
+        "color": "#FFFFFF",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
-        "backgroundPress": "#FFFFFF",
+        "accent": "#5350B2",
+        "backgroundPress": "[object Object]DD",
         "id": "dark_Button"
       },
       "light_Text": {
-        "background": "#000000",
-        "color": "#000000",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#FBFBFC",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
+        "accent": "#5350B2",
         "id": "light_Text"
       },
       "dark_Text": {
-        "background": "#000000",
-        "color": "#FFFFFF",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#FBFBFC",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
+        "accent": "#5350B2",
         "id": "dark_Text"
       },
       "light_Input": {
-        "background": "#000000",
-        "color": "#000000",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+        "background": "#F5F5FD",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
-        "borderColor": "#000000",
+        "accent": "#5350B2",
+        "borderColor": "#F5F5FD",
         "id": "light_Input"
       },
-      "dark_Input": {
-        "background": "#000000",
-        "color": "#FFFFFF",
-        "primary": "#0056B3",
-        "secondary": "#FFE81F",
+      "light_SelectTrigger": {
+        "background": "#F5F5FD",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
         "gray900": "#888888",
-        "borderColor": "#888888",
+        "accent": "#5350B2",
+        "borderColor": "#F5F5FD",
+        "id": "light_SelectTrigger"
+      },
+      "dark_Input": {
+        "background": "#F5F5FD",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
+        "gray900": "#888888",
+        "accent": "#5350B2",
+        "borderColor": "#F5F5FD",
         "id": "dark_Input"
+      },
+      "dark_SelectTrigger": {
+        "background": "#F5F5FD",
+        "color": "#3F3F40",
+        "primary": "#FBFBFC",
+        "secondary": "#F5F5FD",
+        "gray900": "#888888",
+        "accent": "#5350B2",
+        "borderColor": "#F5F5FD",
+        "id": "dark_SelectTrigger"
       }
     },
     "shorthands": {
@@ -27670,28 +27794,35 @@
           "isVar": true,
           "key": "$primary",
           "name": "c-primary",
-          "val": "#0056B3",
+          "val": "#FBFBFC",
           "variable": ""
         },
         "secondary": {
           "isVar": true,
           "key": "$secondary",
           "name": "c-secondary",
-          "val": "#FFE81F",
+          "val": "#F5F5FD",
+          "variable": ""
+        },
+        "accent": {
+          "isVar": true,
+          "key": "$accent",
+          "name": "c-accent",
+          "val": "#5350B2",
           "variable": ""
         },
         "background": {
           "isVar": true,
           "key": "$background",
           "name": "c-background",
-          "val": "#000000",
+          "val": "#FBFBFC",
           "variable": ""
         },
         "text": {
           "isVar": true,
           "key": "$text",
           "name": "c-text",
-          "val": "#3F3F3F",
+          "val": "#3F3F40",
           "variable": ""
         },
         "success": {
@@ -28010,28 +28141,35 @@
         "isVar": true,
         "key": "$primary",
         "name": "c-primary",
-        "val": "#0056B3",
+        "val": "#FBFBFC",
         "variable": ""
       },
       "$color.secondary": {
         "isVar": true,
         "key": "$secondary",
         "name": "c-secondary",
-        "val": "#FFE81F",
+        "val": "#F5F5FD",
+        "variable": ""
+      },
+      "$color.accent": {
+        "isVar": true,
+        "key": "$accent",
+        "name": "c-accent",
+        "val": "#5350B2",
         "variable": ""
       },
       "$color.background": {
         "isVar": true,
         "key": "$background",
         "name": "c-background",
-        "val": "#000000",
+        "val": "#FBFBFC",
         "variable": ""
       },
       "$color.text": {
         "isVar": true,
         "key": "$text",
         "name": "c-text",
-        "val": "#3F3F3F",
+        "val": "#3F3F40",
         "variable": ""
       },
       "$color.success": {
