@@ -27887,6 +27887,13 @@
           "name": "c-gray900",
           "val": "#888888",
           "variable": ""
+        },
+        "accent300": {
+          "isVar": true,
+          "key": "$accent300",
+          "name": "c-accent300",
+          "val": "#818CF8",
+          "variable": ""
         }
       },
       "radius": {
@@ -28233,6 +28240,13 @@
         "key": "$gray900",
         "name": "c-gray900",
         "val": "#888888",
+        "variable": ""
+      },
+      "$color.accent300": {
+        "isVar": true,
+        "key": "$accent300",
+        "name": "c-accent300",
+        "val": "#818CF8",
         "variable": ""
       },
       "$radius.sm": {

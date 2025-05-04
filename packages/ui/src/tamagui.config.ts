@@ -20,6 +20,7 @@ const tokens = createTokens({
     gray300: '#D1D1D6',
     gray500: '#F3F3F3',
     gray900: '#888888',
+    accent300: '#818CF8',
   },
   space: {
     //...config.tokens.space,
