@@ -95,7 +95,7 @@ const Login = () => {
 
                             <Form.Trigger asChild disabled={!isValid || isSubmitting}>
                                 <Stack>
-                                    <UIButton size={'$md'} onPress={handleSubmit(onSubmit)}>
+                                    <UIButton size={'$md'} borderRadius={'$md'} onPress={handleSubmit(onSubmit)}>
                                         <UIButton.Text>
                                             {isSubmitting ? 'Logging In...' : 'Login'}
                                         </UIButton.Text>
@@ -108,21 +108,21 @@ const Login = () => {
                     <YStack mt={30}>
                         <XStack>
                             <XStack flex={1} justifyContent='center' alignItems='center'>
-                                <Separator borderWidth={1} borderColor={'$color.gray900'} />
+                                <Separator borderWidth={1} borderColor={'$color.accent'} />
                                     <Text color={'$color.text'} paddingHorizontal={10} >OR</Text>
-                                <Separator borderWidth={1} borderColor={'$color.gray900'} />
+                                <Separator borderWidth={1} borderColor={'$color.accent'} />
                             </XStack>
                         </XStack>
                         <YStack mt={30}>
                             <YStack gap={16}>
                                 <Stack>
-                                    <UIButton size={'$md'}>
+                                    <UIButton size={'$md'} borderRadius={'$md'}>
                                         <UIButton.Icon icon={Apple} />
                                         <UIButton.Text>Continue with Apple</UIButton.Text>
                                     </UIButton>
                                 </Stack>
                                 <Stack>
-                                    <UIButton size={'$md'}>
+                                    <UIButton size={'$md'} borderRadius={'$md'}>
                                         <UIButton.Icon icon={Chrome} />
                                         <UIButton.Text>Continue with Google</UIButton.Text>
                                     </UIButton>

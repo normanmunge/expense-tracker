@@ -123,7 +123,7 @@ const Signup = () => {
 
                             <Form.Trigger asChild disabled={!isValid || isSubmitting}>
                                 <Stack>
-                                    <UIButton size={'$md'} onPress={handleSubmit(onSubmit)}>
+                                    <UIButton size={'$md'} borderRadius={'$md'} onPress={handleSubmit(onSubmit)}>
                                         <UIButton.Text>
                                             { isSubmitting ? 'Signing Up...': 'Signup'}
                                         </UIButton.Text>
