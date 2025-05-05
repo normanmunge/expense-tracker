@@ -28,7 +28,7 @@ const StyledStack = styled(Stack, {
     }
 });
 
-export const Title: FunctionComponent<Props> = ({children, href}) => {
+export const NavText: FunctionComponent<Props> = ({children, href}) => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
     const navigationHandler = () => {
