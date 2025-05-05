@@ -1,20 +1,47 @@
 import type { FunctionComponent } from 'react';
-import { Stack, H4, Button, Text, YStack } from 'tamagui';
+import { Stack, H4, Button, Text, YStack, XStack } from 'tamagui';
 import { supabase } from '../utils/supabase';
 import { UIButton, UIView } from '@expense-app/ui';
+import { ChevronRight, Info, LogOut, User } from '@tamagui/lucide-icons';
 
 const Settings: FunctionComponent = () => {
     return (
-        <UIView backgroundColor={'transparent'} elevation={'$none'} marginHorizontal={16}>
+        <UIView elevation={'$none'} padding="$md">
             <UIView.Content alignContent='center' justifyContent='center'>
-                <YStack>
+                <YStack gap="$md">
                     <UIButton 
                         size={'$md'}
+                        backgroundColor={'$color.secondary'}
+                        borderColor={'$color.secondary'}
+                        borderRadius={'$md'}
+                        onPress={() => {
+                            console.log('GO TO PERSONAL INFORMATION SCREEN')
+                        }}
+                        justifyContent='space-between'
+                        paddingHorizontal={'$md'}
+                    >
+                        <XStack alignItems='center' gap="$5">
+                            <UIButton.Icon icon={Info} color={'$color.text'} />
+                            <UIButton.Text color={'$color.text'}>
+                                Personal Information
+                            </UIButton.Text>
+                        </XStack>
+                        
+                        <UIButton.Icon icon={ChevronRight} color={'$color.text'} />
+                    </UIButton>
+                    <UIButton 
+                        size={'$md'}
+                        backgroundColor={'$color.secondary'}
+                        borderColor={'$color.secondary'}
+                        borderRadius={'$md'}
                         onPress={() => {
                             supabase.auth.signOut()
                         }}
+                        justifyContent='flex-start'
+                        paddingHorizontal={'$md'}
                     >
-                        <UIButton.Text color={'$color.white'}>
+                        <UIButton.Icon icon={LogOut} color={'$color.text'} />
+                        <UIButton.Text color={'$color.text'}>
                             Log Out
                         </UIButton.Text>
                      </UIButton>
