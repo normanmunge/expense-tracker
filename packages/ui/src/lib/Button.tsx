@@ -79,7 +79,10 @@ export const ButtonFrame = styled(Stack, {
                 color: '$accent',
                 w: 60,
                 h: 60,
-                elevation: 6
+                elevation: 6,
+                pressStyle: {
+                    backgroundColor: '$gray900'
+                }
             }
         }
     } as const,
@@ -97,7 +100,9 @@ export const StyledButtonText = styled(Text, {
     color: '$color',
     paddingHorizontal: 10,
     fontFamily: '$body',
-    userSelect: 'none',
+    numberOfLines: 1,
+    ellipsizeMode: 'tail',
+    textAlign: 'center',
     variants: {
         size: {
             '...size': (name) => {

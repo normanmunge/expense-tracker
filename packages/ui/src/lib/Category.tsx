@@ -16,10 +16,13 @@ export const UICategory = ({ onPress, icon, label, active = false }: UICategoryP
             borderColor={'transparent'}
             justifyContent='center'
             alignItems='center'
-            height={'100%'}
-            width={'inherit'}
+            height={'inherit'}
+            width={85}
             paddingVertical={8}
             borderRadius={'$md'}
+            pressStyle={{
+                backgroundColor: '$color.accent'
+            }}
         >
             <YStack alignItems='center' justifyContent='center' onPress={onPress}>
                 <Stack 

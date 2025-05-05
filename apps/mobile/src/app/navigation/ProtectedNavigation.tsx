@@ -5,6 +5,7 @@ import ManageExpense from "@/src/screens/ManageExpense";
 import RecentExpenses from "@/src/screens/RecentExpenses";
 import Settings from "@/src/screens/Settings";
 import AllExpenses from '@/src/screens/AllExpenses';
+import Categories from '@/src/screens/Categories';
 
 import { XStack, useTheme } from "tamagui";
 import { Plus } from '@tamagui/lucide-icons';
@@ -83,7 +84,7 @@ const ProtectedNavigation = () => {
       <Stack.Navigator screenOptions={{
           headerShadowVisible: false,
           headerStyle: {
-              backgroundColor: theme?.background.val
+              backgroundColor: theme?.accent.val
           },
           headerTintColor: theme.secondary.val,
           headerTitleStyle: {
@@ -98,14 +99,12 @@ const ProtectedNavigation = () => {
               }}
           />
           <Stack.Screen 
+              name="Categories" 
+              component={Categories} 
+          />
+          <Stack.Screen 
               name="Manage Expense" 
               component={ManageExpense} 
-              options={{
-                headerStyle: {
-                  
-                  backgroundColor: theme?.background.val
-                }
-              }}
           />
       </Stack.Navigator>
     )

@@ -7,7 +7,7 @@ import { transactions } from '../mock'
 import { formatCurrency } from '../utils/format-currency'
 import useExpenseStore from '../store/expenseStore';
 import AddExpense from '../components/AddExpense';
-import { UIButton, UIView } from '@expense-app/ui';
+import { UIButton, UICategory, UIView } from '@expense-app/ui';
 import { Figma, Plus } from '@tamagui/lucide-icons';
 
 type RootStackParamList = {
@@ -15,6 +15,7 @@ type RootStackParamList = {
         expenseId: string,
         data?: Expense
     };
+    'Categories': undefined;
 }
 
 const RecentExpenses = () => {
@@ -46,53 +47,34 @@ const RecentExpenses = () => {
                 </YStack>
             </YStack>
 
-            <YStack 
-                marginHorizontal={60} 
+            <YStack
+                marginHorizontal={90} 
                 marginTop={-40} 
                 zIndex={1000} 
                 backgroundColor={'$color.primary'}
                 borderRadius={'$lg'}
-
-                
+                justifyContent="center"
+                alignItems="center"
+                paddingVertical={8}
             >
-                <XStack justifyContent='center' alignItems='center' gap={10}>
-                    <UIButton 
-                        cardIcon 
-                        backgroundColor={'$color.secondary'} 
-                        borderColor={'transparent'} 
-                        size={'$lg'}
-                        w={120}
-                        margin={8}
-                        borderRadius={8}
+                <XStack  gap={10}>
+                    <UICategory 
                         onPress={() => {
                             navigation.navigate('Manage Expense', {
                                 expenseId: ''
                             })
-                        }}
-                    >
-                        <YStack alignItems='center' justifyContent='center'>
-                            <UIButton.Icon icon={Plus} color={'$color.accent'} />
-                            <UIButton.Text color={'$color.accent'}>
-                                Quick Entry
-                            </UIButton.Text>
-                        </YStack>
-                    </UIButton>
-                    <UIButton 
-                        cardIcon 
-                        backgroundColor={'$color.secondary'} 
-                        borderColor={'transparent'} 
-                        size={'$lg'}
-                        w={120}
-                        margin={8}
-                        borderRadius={8}
-                    >
-                        <YStack alignItems='center' justifyContent='center'>
-                            <UIButton.Icon icon={Figma} color={'$color.accent'} />
-                            <UIButton.Text color={'$color.accent'}>
-                                Category
-                            </UIButton.Text>
-                        </YStack>
-                    </UIButton>
+                        }} 
+                        icon={Plus} 
+                        label="Add" 
+                    />
+
+                    <UICategory 
+                        onPress={() => {
+                            navigation.navigate('Categories')
+                        }} 
+                        icon={Figma} 
+                        label="Category" 
+                    />
                 </XStack>
             </YStack>
 

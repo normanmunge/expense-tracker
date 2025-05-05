@@ -9,4 +9,12 @@ export interface Expense {
     paymentMethod: PaymentMethod;
     category: string;
     description: string;
+    isSelected?: boolean;
+}
+
+export interface Category {
+    id: string;
+    label: string;
+    value: string;
+    icon: React.ComponentType<any>;
 }
