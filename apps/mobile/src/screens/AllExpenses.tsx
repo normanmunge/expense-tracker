@@ -1,13 +1,15 @@
 import type { FunctionComponent } from 'react';
-import { Stack, H2 } from 'tamagui';
-//import ExpensesOverview from '../components/expenses/Overview';
+import { Stack, H2, YStack } from 'tamagui';
+import ExpenseChart from '../components/ExpenseChart';
+import { UIView } from '@expense-app/ui';
 
 const AllExpenses: FunctionComponent = () => {
     return (
-        <Stack>
-            <H2>All Expenses</H2>
-            {/* <ExpensesOverview /> */}
-        </Stack>
+        <UIView padding="$md">
+            <YStack backgroundColor={'$color.secondary'} borderRadius={'$md'}>
+                <ExpenseChart />
+            </YStack>
+        </UIView>
     )
 }
 

@@ -1,53 +1,59 @@
 import { ShoppingCart, Slash, Ticket } from '@tamagui/lucide-icons';
-import { Category } from '../types';
+import { Category, type PaymentMethod } from '../types';
 export const DUMMYEXPENSES = [
     {
         id: 'e1',
+        name: 'Lunch',
         description: 'Lunch',
         amount: 1000,
-        date: new Date('2025-12-19'),
+        date: '2025-05-01',
         category: 'Food',
-        mode: 'Mpesa'
+        paymentMethod: 'Mpesa' as PaymentMethod
     },
     {
         id: 'e2',
+        name: 'Fuel',
         description: 'Fuel',
         amount: 2000,
-        date: new Date('2025-12-19'),
+        date: '2025-04-19',
         category: 'Transport',
-        mode: 'Cash'
+        paymentMethod: 'Cash' as PaymentMethod
     },
     {
         id: 'e3',
+        name: 'Electricity',
         description: 'Electricity',
         amount: 3000,
-        date: new Date('2025-12-19'),
+        date: '2025-12-19',
         category: 'Bills',
-        mode: 'Bank Transfer'
+        paymentMethod: 'Bank Transfer' as PaymentMethod
     },
     {
         id: 'e4',
+        name: 'Gift for Elliot',
         description: 'Gift for Elliot',
         amount: 1000,
-        date: new Date('2025-12-19'),
+        date: '2025-12-19',
         category: 'Gifts',
-        mode: 'Mpesa'
+        paymentMethod: 'Mpesa' as PaymentMethod
     },
     {
         id: 'e5',
+        name: 'Gift for Esther',
         description: 'Gift for Esther',
         amount: 2000,
-        date: new Date('2025-12-19'),
+        date: '2025-12-19',
         category: 'Gifts',
-        mode: 'Mpesa'
+        paymentMethod: 'Mpesa' as PaymentMethod
     },
     {
         id: 'e6',
+        name: 'Water Purchase',
         description: 'Water Purchase',
         amount: 500,
-        date: new Date('2025-12-19'),
+        date: '2025-12-19',
         category: 'Bills',
-        mode: 'Mpesa'
+        paymentMethod: 'Mpesa' as PaymentMethod
     }
 ]
 
