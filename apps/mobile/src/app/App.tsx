@@ -10,6 +10,7 @@ import { ActivityIndicator, useColorScheme } from 'react-native';
 import { supabase } from '@/src/utils/supabase';
 import { Session } from '@supabase/supabase-js'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 
 // class ErrorBoundary extends React.Component {
@@ -37,6 +38,14 @@ export default function App() {
   const [session, setSession] = useState<Session | null>(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 60 * 1000,
+      }
+    }
+  })
+
   useEffect(() => {
     const {data} = supabase.auth.onAuthStateChange(async (event, session) => {
         console.log('auth session', event, session)
@@ -61,11 +70,13 @@ export default function App() {
           <SafeAreaProvider>
             <StatusBar style="light" />
               <Theme name='dark'>
+                <QueryClientProvider client={queryClient}>
                   <YStack flex={1} backgroundColor={'$background'}>
                     {
                       isSignedIn && session?.access_token ? <ProtectedNavigation /> : <AuthNavigation />
                     }
                   </YStack>
+                </QueryClientProvider>
               </Theme>
           </SafeAreaProvider>
         </TamaguiProvider>

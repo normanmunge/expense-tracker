@@ -2,7 +2,7 @@
 export type PaymentMethod = 'Cash' | 'Bank' | 'Mpesa' | 'Card';
 
 export interface Expense {
-    id: string;
+    id?: string;
     name: string;
     amount: number;
     date: string;
@@ -18,3 +18,5 @@ export interface Category {
     value: string;
     icon: React.ComponentType<any>;
 }
+
+export type Period = 'Daily' | 'Weekly' | 'Monthly' | 'Yearly'

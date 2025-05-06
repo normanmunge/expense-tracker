@@ -9,6 +9,9 @@ import useExpenseStore from '../store/expenseStore';
 import AddExpense from '../components/AddExpense';
 import { UIButton, UICategory, UIView } from '@expense-app/ui';
 import { Figma, Plus } from '@tamagui/lucide-icons';
+import { useQuery } from '@tanstack/react-query';
+import { fetchExpenses } from '../api/expenses';
+import { ActivityIndicator } from 'react-native';
 
 type RootStackParamList = {
     'Manage Expense': { 
@@ -20,16 +23,25 @@ type RootStackParamList = {
 
 const RecentExpenses = () => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    const { expenses, totalExpense } = useExpenseStore()
+    const { filters, totalExpense } = useExpenseStore()
+
+    const { data: expenses, isLoading } = useQuery({
+        queryKey: ['expenses', filters],
+        queryFn: () => fetchExpenses()
+    })
 
     const expensePressHandler = (expense: Expense) => {
         navigation.navigate('Manage Expense', { 
-            expenseId: expense.id,
+            expenseId: expense.id ?? '',
             data: expense
         });
     }
 
     console.log('THE EXPENSES', expenses);
+
+    if (isLoading) {
+        return <ActivityIndicator />
+    }
     
     return (
         <UIView>
@@ -43,7 +55,7 @@ const RecentExpenses = () => {
             >
                 <YStack marginHorizontal={16}>
                     <Text color={'$color.primary'} fontSize={16} fontWeight="medium">Total Daily Expense</Text>
-                    <Text color={'$color.white'} fontSize={24} fontWeight="bold">Ksh {totalExpense().toFixed(2)}</Text>
+                    <Text color={'$color.white'} fontSize={24} fontWeight="bold">Ksh {totalExpense(expenses ?? []).toFixed(2)}</Text>
                 </YStack>
             </YStack>
 

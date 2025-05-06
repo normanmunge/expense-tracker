@@ -9,6 +9,8 @@ import { PaymentMethod, Expense } from "../types"
 import useExpenseStore from "../store/expenseStore"
 import { UIButton, UITitle, UIView, UIInput } from "@expense-app/ui"
 import { DUMMYCATEGORIES } from "../constants/mock"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { addExpense, updateExpense } from "../api/expenses"
 
 type ManageExpenseProps = {
     route?: {
@@ -37,7 +39,29 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
     const data = route?.params?.data
     const expenseId = route?.params?.expenseId;
     const isEditing = !!expenseId
-    const { updateExpense, addExpense } = useExpenseStore()
+    //const { updateExpense, addExpense } = useExpenseStore()
+
+    const queryClient = useQueryClient()
+
+    const { mutate: addExpenseMutation } = useMutation({
+        mutationFn: (data: Expense) => addExpense(data),
+        onSuccess: () => {
+           queryClient.invalidateQueries({ queryKey: ['expenses'] })
+        },
+        onError: (error) => {
+            console.log('error', error.message)
+        }
+    })
+
+    const { mutate: updateExpenseMutation } = useMutation({
+        mutationFn: (data: Expense) => updateExpense(data),
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['expenses'] })
+        },
+        onError: (error) => {
+            console.log('error', error)
+        }
+    })
 
     console.log('THE DATA IS: data', data)
 
@@ -80,18 +104,27 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                 ...values,
                 amount: Number(values.amount)
             }
-            updateExpense(expenseId, data)
+            // updateExpense(expenseId, data)
+            updateExpenseMutation(data)
         } else {
             
             const uuid = String(Date.now())
             
             const data = {
                 ...values,
-                id: uuid,
+                transaction_code: '1233232',
+                category_id: '1',
+                type: values.paymentMethod,
+                user_id: 'f3f64be7-80fd-48ef-9bfd-5c9bea757843',
                 amount: Number(values.amount)
             }
 
-            addExpense(data)
+
+
+            addExpenseMutation(data)
+
+
+            // addExpense(data)
         }
         
         navigation?.goBack()
@@ -154,6 +187,7 @@ const ManageExpense: FunctionComponent<ManageExpenseProps> = ({ route, navigatio
                     placeholder='YYYY--MM-DD'
                     keyboardType='default'
                     defaultValue={data?.date}
+                    isDefault
                 />
 
                 {/* <Label fontSize={14} color={'$color.background'}>Description</Label>
